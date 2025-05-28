@@ -1,0 +1,57 @@
+/* Container and Row Styling */
+.container {
+    margin-top: 50px;
+  }
+  
+  /* Card Shadow Styling */
+  .utf-sidebar-widget-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  /* Card Content */
+  .utf-card-content {
+    margin-top: 15px;
+  }
+  
+  .utf-sidebar-widget-item h3 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  
+  /* For Origin Story Layout */
+  .utf-card-content img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .utf-section-headline-item.centered {
+    text-align: center;
+    padding: 0;
+  }
+  
+  .margin-bottom-40 {
+    margin-bottom: 40px !important;
+  }
+  
+  .margin-top-0 {
+    margin-top: 0px !important;
+  }
+  
+  /* Make sure the image and content are aligned properly */
+  .row {
+    margin-bottom: 40px;
+  }
+  
+  /* Three cards styling */
+  .card-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  

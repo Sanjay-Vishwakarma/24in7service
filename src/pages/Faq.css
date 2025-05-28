@@ -1,0 +1,24 @@
+.margin-top-40 {
+  margin-top: 40px !important;
+}
+
+.faq-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.faq-item:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.faq-question {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.faq-toggle {
+  font-size: 1.5rem;
+  color: #007bff;
+}
