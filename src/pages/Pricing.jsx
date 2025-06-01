@@ -1,13 +1,14 @@
 import React from "react";
+import PricingCard from '../components/PricingCard'
 
 function Pricing() {
   return (
     <div className="container mt-5">
       <div className="col-xl-12">
+
+        <PricingCard/>
         <div className="utf-section-headline-item centered margin-bottom-30">
-          <span>Pricing Plan</span>
           <h3>Pay For What You Use</h3>
-          <div className="utf-headline-display-inner-item">Pricing Plan</div>
           <p className="utf-slogan-text">
             Our customised price options enables you to go as per your needs and
             requirements. Our pricing and related services are most economical

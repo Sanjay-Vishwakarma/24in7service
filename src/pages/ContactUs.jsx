@@ -1,24 +1,46 @@
 import React, { useState } from "react";
 import "./ContactUs.css";
+import axiosInstance from "./../config/axiosInstance";
+import { API_ENDPOINTS } from './../config/apiEndpoints';
+import { showToast, ToastNotification } from "./../utils/ToastNotification";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
+    fullName: "",
+    phoneNumber: "",
     email: "",
-    message: "",
+    description: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Replace with your API logic here
-    console.log("Submitted:", formData);
-    alert("Your message has been sent!");
-    setFormData({ name: "", phone: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await axiosInstance.post(API_ENDPOINTS.CONTACT_US, formData);
+      if (response.data) {
+        showToast("Your message has been sent successfully!", "success");
+        setFormData({
+          fullName: "",
+          phoneNumber: "",
+          email: "",
+          description: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      showToast(
+        error.response?.data?.message || "Failed to send message. Please try again.",
+        "error"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const addressList = [
@@ -43,93 +65,123 @@ function ContactUs() {
   ];
 
   return (
-    <div className="container margin-top-40">
-      <div className="row">
-        {/* Contact Info */}
-        <div className="col-lg-4 mb-4">
-          <h3 className="mb-3">
-            <i className="icon-feather-map-pin" /> Office Address
-          </h3>
-          <p><strong>Phone:</strong> 8855055049, 7987300916</p>
-          <p><strong>Email:</strong> contact@theworkinglady.in</p>
+    <div className="contact-container">
+      <ToastNotification />
+      <div className="contact-header">
+        <h1>Get In Touch</h1>
+        <p>We'd love to hear from you! Send us a message below.</p>
+      </div>
 
-          {addressList.map((loc, index) => (
-            <div key={index} className="contact-card mb-4">
-              <h5>{loc.city}</h5>
-              <p>{loc.address}</p>
-              <p>
-                <strong>Contact:</strong> {loc.phones.join(", ")}
-              </p>
+      <div className="contact-content">
+        {/* Contact Info */}
+        <div className="contact-info">
+          <div className="info-card">
+            <h2>
+              <i className="fas fa-map-marker-alt"></i> Our Offices
+            </h2>
+
+            <div className="contact-method">
+              <i className="fas fa-phone"></i>
+              <div>
+                <h3>Phone</h3>
+                <p>8855055049, 7987300916</p>
+              </div>
             </div>
-          ))}
+
+            <div className="contact-method">
+              <i className="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p>contact@theworkinglady.in</p>
+              </div>
+            </div>
+
+            {addressList.map((loc, index) => (
+              <div key={index} className="address-card">
+                <h3>{loc.city}</h3>
+                <p>{loc.address}</p>
+                <div className="contact-method">
+                  <i className="fas fa-phone"></i>
+                  <p>{loc.phones.join(", ")}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Contact Form */}
-        <div className="col-lg-8 mb-4">
-          <h3 className="mb-3">
-            <i className="icon-material-outline-description" /> Contact Form
-          </h3>
-          <form onSubmit={handleSubmit}>
-            <div className="row g-3">
-              <div className="col-md-6">
-                <label className="form-label">First Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  placeholder="Enter your name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-              </div>
+        <div className="contact-form-container">
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fullName">
+                Full Name <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                placeholder="Enter your name"
+                required
+                value={formData.fullName}
+                onChange={handleChange}
+              />
+            </div>
 
-              <div className="col-md-6">
-                <label className="form-label">Mobile Number</label>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="phoneNumber">
+                  Mobile Number <span className="required">*</span>
+                </label>
                 <input
                   type="tel"
-                  name="phone"
-                  className="form-control"
+                  id="phoneNumber"
+                  name="phoneNumber"
                   placeholder="10-digit mobile"
                   pattern="[0-9]{10}"
                   required
-                  value={formData.phone}
+                  value={formData.phoneNumber}
                   onChange={handleChange}
                 />
               </div>
 
-              <div className="col-12">
-                <label className="form-label">Email</label>
+              <div className="form-group">
+                <label htmlFor="email">
+                  Email <span className="required">*</span>
+                </label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
-                  className="form-control"
                   placeholder="you@example.com"
                   required
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
-
-              <div className="col-12">
-                <label className="form-label">Message</label>
-                <textarea
-                  name="message"
-                  rows="4"
-                  className="form-control"
-                  placeholder="Write your message..."
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="col-12 text-end">
-                <button type="submit" className="btn btn-primary mt-2">
-                  Submit Message
-                </button>
-              </div>
             </div>
+
+            <div className="form-group">
+              <label htmlFor="description">
+                Your Message <span className="required">*</span>
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                rows="5"
+                placeholder="How can we help you?"
+                required
+                value={formData.description}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="submit-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
           </form>
         </div>
       </div>

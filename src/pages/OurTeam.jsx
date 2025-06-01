@@ -1,8 +1,11 @@
 import React from 'react'
+import InquiryModal from "./InquiryModal";
 
 function OurTeam() {
   return (
-    <div>OurTeam</div>
+    <>
+      <InquiryModal/>
+    </>
   )
 }
 

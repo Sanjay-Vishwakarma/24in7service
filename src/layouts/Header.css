@@ -1,29 +1,45 @@
 /* Desktop navigation */
 .nav-link {
-    padding: 8px 12px;
-    color: black;
-    font-weight: 500;
-    text-decoration: none;
-    transition: 0.3s;
+  padding: 8px 12px;
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: purple;
+}
+
+.nav-link.active {
+  color: purple;
+  border-bottom: 2px solid purple;
+}
+
+/* Mobile drawer nav */
+.drawer-link {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+
+.drawer-link.active .MuiListItem-root {
+  background-color: #f3e5f5;
+  font-weight: bold;
+}
+
+/* Toolbar adjustments */
+.MuiToolbar-root {
+  min-height: 64px;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .MuiToolbar-root {
+    min-height: 56px;
   }
-  
-  .nav-link:hover {
-    color: purple;
-  }
-  
-  .nav-link.active {
-    color: purple;
-    border-bottom: 2px solid purple;
-  }
-  
-  /* Mobile drawer nav */
-  .drawer-link {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .drawer-link.active .MuiListItem-root {
-    background-color: #f3e5f5; /* Light purple background */
-    font-weight: bold;
-  }
-  
+}

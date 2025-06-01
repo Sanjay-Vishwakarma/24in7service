@@ -4,7 +4,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Button,
   Drawer,
   List,
   ListItem,
@@ -15,19 +14,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
 import AuthModal from "../pages/AuthModal";
-
-import "./Header.css"; // contains nav-link and drawer-link styles
+import "./Header.css";
 
 const navItems = [
-  "Home",
-  "About",
-  "Our Team",
-  "Process",
-  "Pricing",
-  "Faq",
-  "Blog",
-  "Jobs",
-  "Contact Us",
+  "HOME",
+  "ABOUT",
+  "PROCESS",
+  "PRICING",
+  "FAQ",
+  "BLOG",
+  "JOBS",
+  "CONTACT US",
+  "FEEDBACK"
 ];
 
 const Header = () => {
@@ -40,8 +38,8 @@ const Header = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        24in7 Maid Service
+      <Typography variant="h6" sx={{ my: 2, textTransform: 'uppercase' }}>
+        24IN7 MAID SERVICE
       </Typography>
       <List>
         {navItems.map((label, index) => (
@@ -53,12 +51,15 @@ const Header = () => {
             }
           >
             <ListItem button>
-              <ListItemText primary={label} />
+              <ListItemText
+                primary={label}
+                primaryTypographyProps={{ style: { textTransform: 'uppercase' } }}
+              />
             </ListItem>
           </NavLink>
         ))}
         <ListItem button onClick={() => setOpenAuth(true)}>
-          <FaSignInAlt style={{ marginRight: 8 }} /> Sign In
+          <FaSignInAlt style={{ marginRight: 8 }} /> SIGN IN
         </ListItem>
       </List>
     </Box>
@@ -67,29 +68,24 @@ const Header = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar component="nav" position="sticky" color="default" elevation={1}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          {/* Logo */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Toolbar>
+          {/* Logo - stays on left */}
+          <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
             <img
               src="/logo192.png"
               alt="Logo"
               width="40"
               height="40"
-              style={{ marginRight: 10 }}
-            />
-            <Typography variant="h6" color="purple" noWrap>
-            24in7 Maid Service
-            </Typography>
+            /><span>24IN7 MAID SERVICE</span>
           </Box>
 
-          {/* Desktop nav */}
-          <Box
-            sx={{
-              display: { xs: "none", md: "flex" },
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          {/* Centered Navigation */}
+          <Box sx={{
+            display: { xs: "none", md: "flex" },
+            justifyContent: "center",
+            flexGrow: 1,
+            gap: 2
+          }}>
             {navItems.map((label, index) => (
               <NavLink
                 key={index}
@@ -97,40 +93,30 @@ const Header = () => {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
+                style={{ textTransform: 'uppercase' }}
               >
                 {label}
               </NavLink>
             ))}
-
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "purple",
-                color: "white",
-                textTransform: "none",
-                borderRadius: 10,
-              }}
-              onClick={() => setOpenAuth(true)}
-              startIcon={<FaSignInAlt />}
-            >
-              Sign In
-            </Button>
           </Box>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button (right-aligned) */}
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerToggle}
-            sx={{ display: { md: "none" } }}
+            sx={{
+              display: { md: "none" },
+              marginLeft: "auto"
+            }}
           >
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
 
-      {/* Drawer for mobile */}
+      {/* Mobile drawer */}
       <Drawer
         anchor="right"
         open={mobileOpen}
@@ -138,7 +124,10 @@ const Header = () => {
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 250 },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 250,
+          },
         }}
       >
         {drawer}
