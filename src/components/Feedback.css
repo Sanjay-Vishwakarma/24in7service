@@ -1,0 +1,143 @@
+/* Feedback.css */
+.feedback-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .feedback-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feedback-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+  }
+  
+  .feedback-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .required {
+    color: #e74c3c;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  .input-error {
+    border-color: #e74c3c;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: block;
+  }
+  
+  .rating-container {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .rating-star {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .rating-star.active {
+    color: #f39c12;
+  }
+  
+  .submit-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .thank-you-message {
+    text-align: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .thank-you-message h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .thank-you-message p {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .feedback-container {
+      padding: 1rem;
+    }
+    
+    .feedback-form {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .rating-star {
+      font-size: 1.5rem;
+    }
+    
+    input, textarea {
+      padding: 0.5rem;
+    }
+    
+    .submit-button {
+      padding: 0.6rem 1rem;
+    }
+  }
