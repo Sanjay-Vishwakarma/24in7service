@@ -18,8 +18,15 @@ import {
   Divider
 } from '@mui/material';
 
+import axiosInstance from "./../config/axiosInstance";
+import { API_ENDPOINTS } from './../config/apiEndpoints';
+import { showToast, ToastNotification } from "./../utils/ToastNotification";
+
+
 const Job = () => {
   const [open, setOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -74,15 +81,100 @@ const Job = () => {
         : prev[name].filter(item => item !== value)
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setOpen(false);
-  };
+    setIsSubmitting(true);
 
+    try {
+      const formDataToSend = new FormData();
+
+      // Add the JSON data as a string
+      const jsonData = {
+        fullName: formData.fullName,
+        mobile: formData.mobile,
+        category: formData.category,
+        maritalStatus: formData.maritalStatus,
+        age: formData.age,
+        religion: formData.religion,
+        gender: formData.gender,
+        passport: formData.passport,
+        education: formData.education,
+        workingHours: formData.workingHours,
+        address: formData.address,
+        workLocation: formData.workLocation,
+        expectedSalary: formData.expectedSalary,
+        experience: formData.experience,
+        languages: formData.languages
+      };
+
+      // Append as Blob to ensure proper formatting
+      const jsonBlob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
+      formDataToSend.append('data', jsonBlob);
+
+      // Append files
+      if (formData.aadharCard) {
+        formDataToSend.append('aadharCard', formData.aadharCard);
+      }
+      if (formData.image) {
+        formDataToSend.append('image', formData.image);
+      }
+
+      // Debug: Log FormData contents
+      for (let [key, value] of formDataToSend.entries()) {
+        console.log(key, value);
+      }
+
+      // Send the request
+      const response = await axiosInstance.post(
+        API_ENDPOINTS.JOB_APPLICATION,
+        formDataToSend,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          transformRequest: (data) => data, // Important: prevent axios from transforming FormData
+        }
+      );
+
+      // Handle success
+      showToast('Thank you for applying for the job! We will contact you soon.', 'success');
+
+      // Reset form
+      setFormData({
+        fullName: '',
+        mobile: '',
+        category: '',
+        maritalStatus: '',
+        age: '',
+        religion: '',
+        gender: '',
+        passport: '',
+        education: '',
+        workingHours: '',
+        address: '',
+        workLocation: '',
+        expectedSalary: '',
+        experience: '',
+        languages: [],
+        aadharCard: null,
+        image: null
+      });
+      setOpen(false);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      showToast(
+        error.response?.data?.message ||
+        'There was an error submitting your form. Please try again.',
+        'error'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <>
+    <ToastNotification />
       <div style={{ textAlign: 'center', marginTop: 50 }}>
         <Button variant="contained" onClick={() => setOpen(true)}>
           Click here to apply
@@ -274,7 +366,6 @@ const Job = () => {
                 value={formData.address}
                 onChange={handleChange}
                 multiline
-                rows={3}
                 required
               />
 

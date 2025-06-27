@@ -38,30 +38,6 @@ const cardData = [
     description: `If you're a local maid agency and align with our vision, join us.`,
     hindi: `यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़ते हैं, तो हमसे जुड़ें।`,
   },
-  {
-    id: 4,
-    title: "JOIN US AS A Sanjay PARTNER/ हमसे जुड़ें",
-    image: marketImg,
-    link: "https://theworkinglady.in/contact-us",
-    description: `If you're a local maid agency and align with our vision, join us.`,
-    hindi: `यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़ते हैं, तो हमसे जुड़ें।`,
-  },
-  {
-    id: 5,
-    title: "JOIN US AS A cool PARTNER/ हमसे जुड़ें",
-    image: marketImg,
-    link: "https://theworkinglady.in/contact-us",
-    description: `If you're a local maid agency and align with our vision, join us.`,
-    hindi: `यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़ते हैं, तो हमसे जुड़ें।`,
-  },
-  {
-    id: 5,
-    title: "JOIN US AS A cool PARTNER/ हमसे जुड़ें",
-    image: marketImg,
-    link: "https://theworkinglady.in/contact-us",
-    description: `If you're a local maid agency and align with our vision, join us.`,
-    hindi: `यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़ते हैं, तो हमसे जुड़ें।`,
-  },
 ];
 
 function Home() {
