@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
@@ -7,11 +7,13 @@ import {
   Typography,
   Button,
   CardMedia,
+  Modal,
 } from "@mui/material";
 import jobImg from "../assets/images/job.png";
 import mgHome from "../assets/images/1mg.webp";
 import marketImg from "../assets/images/market.png";
 import wrhImg from "../assets/images/we-are-hiring.png";
+import ContactUs from "./ContactUs";
 
 const cardData = [
   {
@@ -21,28 +23,67 @@ const cardData = [
     link: "https://theworkinglady.in/job-list",
     description: `Submit your applications easily and stay updated on new job openings.`,
     hindi: `अपना आवेदन आसानी से जमा करें और नई नौकरी के अवसरों के बारे में अपडेट रहें।`,
+    isExternal: true,
   },
-  {
-    id: 2,
-    title: "I'm Hiring/ मैं नियुक्ति कर रहा हूँ",
-    image: wrhImg,
-    link: "#", // Add actual modal or routing
-    description: `Post job listings and connect with skilled professionals.`,
-    hindi: `नौकरी की लिस्टिंग पोस्ट करें और कुशल पेशेवरों से जुड़ें।`,
-  },
+  // {
+  //   id: 2,
+  //   title: "I'm Hiring/ मैं नियुक्ति कर रहा हूँ",
+  //   image: wrhImg,
+  //   link: "#", // Add actual modal or routing
+  //   description: `Post job listings and connect with skilled professionals.`,
+  //   hindi: `नौकरी की लिस्टिंग पोस्ट करें और कुशल पेशेवरों से जुड़ें।`,
+  //   isExternal: false,
+  // },
   {
     id: 3,
     title: "JOIN US AS A HIRING PARTNER/ हमसे जुड़ें",
     image: marketImg,
-    link: "https://theworkinglady.in/contact-us",
     description: `If you're a local maid agency and align with our vision, join us.`,
     hindi: `यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़ते हैं, तो हमसे जुड़ें।`,
+    isExternal: false,
+    isContactUs: true,
   },
 ];
 
 function Home() {
+  const [openContactModal, setOpenContactModal] = useState(false);
+
+  const handleOpenContactModal = () => {
+    setOpenContactModal(true);
+  };
+
+  const handleCloseContactModal = () => {
+    setOpenContactModal(false);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, px: 2, py: 4 }}>
+      {/* Contact Us Modal */}
+      <Modal
+        open={openContactModal}
+        onClose={handleCloseContactModal}
+        aria-labelledby="contact-us-modal"
+        aria-describedby="contact-us-form"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: { xs: "90%", sm: "80%", md: "60%" },
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 2,
+            maxHeight: "90vh",
+            overflowY: "auto",
+          }}
+        >
+          <ContactUs onClose={handleCloseContactModal} />
+        </Box>
+      </Modal>
+
       {/* Hero Image Carousel */}
       <Box
         component="img"
@@ -51,7 +92,7 @@ function Home() {
         sx={{
           width: "100%",
           height: { xs: 600, md: 800 },
-          objectFit: "contain", // change from 'cover' to 'contain'
+          objectFit: "contain",
           borderRadius: 2,
           mb: 4,
         }}
@@ -65,9 +106,9 @@ function Home() {
         <Typography variant="h4" sx={{ textTransform: "uppercase" }}>
           A perfect solution
         </Typography>
-        <Typography variant="h5" color="text.secondary" fontStyle="italic">
+        {/* <Typography variant="h5" color="text.secondary" fontStyle="italic">
           I need a Job
-        </Typography>
+        </Typography> */}
       </Box>
 
       {/* Cards Section */}
@@ -96,8 +137,9 @@ function Home() {
                   <Button
                     variant="contained"
                     color="primary"
-                    href={item.link}
-                    target="_blank"
+                    href={item.isExternal ? item.link : undefined}
+                    target={item.isExternal ? "_blank" : undefined}
+                    onClick={item.isContactUs ? handleOpenContactModal : undefined}
                     fullWidth
                   >
                     Learn More

@@ -30,16 +30,16 @@ const steps = [
     description:
       "Discover profiles that align with your criteria. Our platform presents you with a curated selection of candidates tailored to your needs.",
   },
-  {
-    title: "3) Join Our Community",
-    description:
-      "Register as a client by paying the nominal registration charges. Gain access to our exclusive services and resources.",
-  },
-  {
-    title: "4) Access Your Dashboard",
-    description:
-      "Enjoy the convenience of our user-friendly dashboard, offering you access to various benefits, updates, and support services from TWL.",
-  },
+  // {
+  //   title: "3) Join Our Community",
+  //   description:
+  //     "Register as a client by paying the nominal registration charges. Gain access to our exclusive services and resources.",
+  // },
+  // {
+  //   title: "4) Access Your Dashboard",
+  //   description:
+  //     "Enjoy the convenience of our user-friendly dashboard, offering you access to various benefits, updates, and support services from TWL.",
+  // },
   {
     title: "5) See Matching Profiles",
     description:
@@ -75,7 +75,7 @@ function Process() {
   }, [currentStep]);
 
   return (
-    <div className="container process-container py-5">
+    <div className="container process-container py-5 pb-5 margin-bottom-30">
       {steps.map((step, index) => (
         <div className="row align-items-center my-5" key={index}>
           {index % 2 === 0 ? (

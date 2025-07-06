@@ -22,10 +22,11 @@ const navItems = [
   "PROCESS",
   "PRICING",
   "FAQ",
-  "BLOG",
+  "FEEDBACK",
   "JOBS",
-  "CONTACT US",
-  "FEEDBACK"
+  "BLOG",
+  "CONTACT US"
+  
 ];
 
 const Header = () => {
@@ -58,9 +59,6 @@ const Header = () => {
             </ListItem>
           </NavLink>
         ))}
-        <ListItem button onClick={() => setOpenAuth(true)}>
-          <FaSignInAlt style={{ marginRight: 8 }} /> SIGN IN
-        </ListItem>
       </List>
     </Box>
   );
