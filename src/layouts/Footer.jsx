@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaPhoneAlt, FaWhatsapp, FaArrowUp } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,8 +31,15 @@ const Footer = () => {
                             <div className="col-sm-6 mb-4 mb-sm-0">
                                 <h6 className="footer-heading">Quick Links</h6>
                                 <ul className="list-unstyled">
-                                    {['Home', 'About Us', 'Prices', 'Contact Us', 'Privacy Policy', 'Term & Condition'].map((item, i) => (
-                                        <li key={i}>&rsaquo; <a href="#" className="text-dark text-decoration-none">{item}</a></li>
+                                {[
+                                        { label: 'Home', path: '/' },
+                                        { label: 'About Us', path: '/about' },
+                                        { label: 'Prices', path: '/pricing' },
+                                        { label: 'Contact Us', path: '/contactus' },
+                                        { label: 'Privacy Policy', path: '/privacy-policy' },
+                                        { label: 'Term & Condition', path: '/terms-condition' }
+                                    ].map((item, i) => (
+                                        <li key={i}>&rsaquo; <Link to={item.path} className="text-dark text-decoration-none">{item.label}</Link></li>
                                     ))}
                                 </ul>
                             </div>

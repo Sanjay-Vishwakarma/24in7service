@@ -14,6 +14,10 @@ import ContactUs from "./pages/ContactUs";
 import InquiryModal from "./pages/InquiryModal";
 import Feedback from "./components/Feedback";
 import {ToastNotification} from './utils/ToastNotification';
+import TermsAndCondition from "./pages/TermsAndCondition";
+import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
+import ScrollToTop from './components/ScrollToTop';
+
 
 function App() {
   const [showInquiryModal, setShowInquiryModal] = useState(false);
@@ -50,6 +54,7 @@ function App() {
       )}
 
       <Header />
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -61,6 +66,8 @@ function App() {
         <Route path="/jobs" element={<Job />} />
         <Route path="/contactus" element={<ContactUs contactData={contactData} />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="/privacy-policy" element={< PrivacyAndPolicy />} />
+        <Route path="/terms-condition" element={< TermsAndCondition />} />
       </Routes>
       <Footer />
     </>

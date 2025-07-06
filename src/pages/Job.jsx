@@ -175,11 +175,28 @@ const Job = () => {
   return (
     <>
     <ToastNotification />
-      <div style={{ textAlign: 'center', marginTop: 50 }}>
-        <Button variant="contained" onClick={() => setOpen(true)}>
+
+      <div style={{ textAlign: 'center', marginTop: 50, marginBottom: 50 }}>
+        <Button
+          variant="contained"
+          onClick={() => setOpen(true)}
+          sx={{
+            backgroundColor: '#ff6b6b',
+            color: 'white',
+            padding: '12px 30px',
+            fontSize: '1.1rem',
+            fontWeight: 'bold',
+            borderRadius: '50px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            '&:hover': {
+              backgroundColor: '#ff5252',
+              transform: 'translateY(-2px)'
+            }
+          }}
+        >
           Click here to apply
         </Button>
-      </div>
+        </div>
 
       <Dialog
         open={open}
