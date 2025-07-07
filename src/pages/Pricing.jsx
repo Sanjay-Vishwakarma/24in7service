@@ -20,7 +20,7 @@ function Pricing() {
 
       <div className="row">
         <div className="utf-sidebar-widget-item">
-          <h3>Pricing process by TWL</h3>
+          <h3>Pricing process by MAID SERVICE</h3>
           <ul className="utf-job-deatails-content-item">
             <li>
               <i className="icon-feather-arrow-right" />
@@ -36,7 +36,7 @@ function Pricing() {
             <li>
               <i className="icon-feather-arrow-right" /> Final Charges to be
               paid after joining of the maid and a satisfactory trial period of
-              2 days
+              3 days
             </li>
             <li>
               <i className="icon-feather-arrow-right" /> The monthly salary of

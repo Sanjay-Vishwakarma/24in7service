@@ -10,7 +10,7 @@ import {
   Modal,
 } from "@mui/material";
 import jobImg from "../assets/images/job.png";
-import mgHome from "../assets/images/1mg.webp";
+import mgHome from "../assets/images/background.jpg";
 import marketImg from "../assets/images/market.png";
 import wrhImg from "../assets/images/we-are-hiring.png";
 import ContactUs from "./ContactUs";
@@ -91,10 +91,12 @@ function Home() {
         alt="Hero"
         sx={{
           width: "100%",
-          height: { xs: 600, md: 800 },
-          objectFit: "contain",
+          height: "auto", // Allow the image to adjust based on width
+          maxHeight: { xs: 300, sm: 400, md: 500, lg: 600 }, // Optional: max height per screen size
+          objectFit: "cover", // or "contain" depending on your design
           borderRadius: 2,
           mb: 4,
+          display: "block", // avoids extra spacing below the image
         }}
       />
 
