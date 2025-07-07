@@ -30,33 +30,25 @@ const steps = [
     description:
       "Discover profiles that align with your criteria. Our platform presents you with a curated selection of candidates tailored to your needs.",
   },
-  // {
-  //   title: "3) Join Our Community",
-  //   description:
-  //     "Register as a client by paying the nominal registration charges. Gain access to our exclusive services and resources.",
-  // },
-  // {
-  //   title: "4) Access Your Dashboard",
-  //   description:
-  //     "Enjoy the convenience of our user-friendly dashboard, offering you access to various benefits, updates, and support services from TWL.",
-  // },
+ 
   {
-    title: "5) See Matching Profiles",
+    title: "3) See Matching Profiles",
     description:
       "Discover profiles that align with your criteria. Our platform presents you with a curated selection of candidates tailored to your needs.",
   },
   {
-    title: "6) Make Your Selection",
+    title: "4) Registration Fees",
     description:
-      "Choose the candidate who best fits your requirements and expectations. You have the freedom to select from a pool of qualified individuals.",
+      "Pay 1000 rs of the total service charge to proceed futher.",
   },
+
   {
-    title: "7) Take Trial Period of Selected Candidate",
+    title: "5) Take Trial Period of Selected Candidate",
     description:
       "Test the waters with your chosen candidate through a trial period. Evaluate their performance firsthand before making a final commitment.",
   },
   {
-    title: "8) Pay Final Service Charge After Satisfaction",
+    title: "6) Pay Final Service Charge After Satisfaction",
     description:
       "Upon being satisfied with the candidate's performance during the trial period, proceed to pay the final service charge for our matchmaking services.",
   },

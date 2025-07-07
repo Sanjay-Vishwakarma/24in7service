@@ -70,10 +70,10 @@ const Header = () => {
           {/* Logo - stays on left */}
           <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
             <img
-              src="/logo192.png"
+              src="/logo.jpg"
               alt="Logo"
-              width="40"
-              height="40"
+              width="60"
+              height="50"
             /><span>24IN7 MAID SERVICE</span>
           </Box>
 

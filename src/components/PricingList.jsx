@@ -42,14 +42,14 @@ PricingList.defaultProps = {
         {
             work: "House Maid",
             workingTime: "8 hours/day",
-            price: "8000",
+            price: "14000",
             priceDuration: "month",
             description: "Professional house cleaning with all basic chores included."
         },
         {
             work: "Baby Sitter",
             workingTime: "12 hours/day",
-            price: "12000",
+            price: "18000",
             priceDuration: "month",
             description: "Experienced caregivers for your little ones with safety training."
         },
@@ -63,21 +63,21 @@ PricingList.defaultProps = {
         {
             work: "Elder Care",
             workingTime: "24 hours",
-            price: "15000",
+            price: "22000",
             priceDuration: "month",
             description: "Compassionate care for elderly family members with medical knowledge."
         },
         {
             work: "Driver",
             workingTime: "8 hours/day",
-            price: "12000",
+            price: "16000",
             priceDuration: "month",
             description: "Professional drivers with clean records for your daily commutes."
         },
         {
             work: "Patient Caretaker",
             workingTime: "12 hours/day",
-            price: "14000",
+            price: "19000",
             priceDuration: "month",
             description: "Trained attendants for post-operative or chronic illness care."
         }
