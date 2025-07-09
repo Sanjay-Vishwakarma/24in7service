@@ -40,7 +40,7 @@ const Header = () => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2, textTransform: 'uppercase' }}>
-        24IN7 MAID SERVICE
+        24IN MAID SERVICE
       </Typography>
       <List>
         {navItems.map((label, index) => (
@@ -74,7 +74,7 @@ const Header = () => {
               alt="Logo"
               width="60"
               height="50"
-            /><span>24IN7 MAID SERVICE</span>
+            /><span>24IN MAID SERVICE</span>
           </Box>
 
           {/* Centered Navigation */}

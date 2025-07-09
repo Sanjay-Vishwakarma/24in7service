@@ -13,9 +13,9 @@ const Footer = () => {
                     {/* Logo and Description */}
                     <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
                         <img src="" alt="" width="50" className="mb-2" />
-                        <h5 className="text-purple fw-bold">THE WORKING LADY</h5>
+                        <h5 className="text-purple fw-bold">24IN MAID SERVICE</h5>
                         <p className="small">
-                            "The Working Lady" connects skilled house helps and maids with clients in need of their services. Our platform offers a seamless experience.
+                            "24in Maid Service" connects skilled house helps and maids with clients in need of their services. Our platform offers a seamless experience.
                         </p>
                         <div className="social-icons">
                             <a href="#"><FaInstagram className="me-3" /></a>
@@ -98,8 +98,8 @@ const Footer = () => {
 
             {/* Floating Buttons */}
             <div className="floating-buttons">
-                <a href="tel:9076380917" className="float-btn call"><FaPhoneAlt /></a>
-                <a href="https://wa.me/9076380917" target="_blank" rel="noreferrer" className="float-btn whatsapp"><FaWhatsapp /></a>
+                <a href="tel:9082295602" className="float-btn call"><FaPhoneAlt /></a>
+                <a href="https://wa.me/9082295602" target="_blank" rel="noreferrer" className="float-btn whatsapp"><FaWhatsapp /></a>
                 <a href="#top" className="float-btn to-top"><FaArrowUp /></a>
             </div>
         </footer>

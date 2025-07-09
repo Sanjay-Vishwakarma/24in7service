@@ -5,32 +5,28 @@ import "./About.css";
 // Define dynamic data for each section
 const sections = [
   {
-    title: "Origin Story",
+    title: "Our Vision",
     content: [
-      `Founded with a vision to transform the domestic job market, "The Working Lady" (TWL) has a unique origin story that drives our mission and values.`,
-      `It all began with a simple idea – to create a platform that connects job seekers and employers in the domestic sector seamlessly.`,
-      `From humble beginnings to a thriving community, TWL has evolved into a trusted and reliable resource for those seeking domestic employment solutions.`,
-      `As we continue to grow and expand our reach, our origin story remains at the heart of everything we do.`,
-      `Join us on this journey as we write the next chapter of success together!`,
+      `To be India’s most reliable pan-India platform for connecting households with verified domestic maid bureaus—making it simple, secure, and convenient to find trusted domestic help anywhere in the country.`,
     ],
     image: flag,
   },
   {
-    title: "Need for TWL",
+    title: "Need for 24IN MS",
     content: [
       {
         detail:
-          `In today's fast-paced world, finding reliable domestic help or securing a fulfilling domestic job can be a daunting task. This is where "The Working Lady" (TWL) steps in, revolutionizing the way job seekers and employers connect in the domestic job market.`,
+          `In today's fast-paced world, finding reliable domestic help or securing a fulfilling domestic job can be a daunting task. This is where "24IN Maid Service" (24IN MS) steps in, revolutionizing the way job seekers and employers connect in the domestic job market.`,
       },
     ],
   },
   {
-    title: "Why TWL is Essential",
+    title: "Why 24IN MS is Essential",
     content: [
       {
         title: "Trust and Reliability",
         detail:
-          "TWL verifies both job listings and job seekers for a safe experience.",
+          "24IN MS verifies both job listings and job seekers for a safe experience.",
       },
       {
         title: "Time and Effort Saving",
@@ -54,7 +50,7 @@ const sections = [
       {
         title: "Access to Verified Opportunities",
         detail:
-          "TWL ensures that all job listings are verified, providing job seekers.",
+          "24IN MS ensures that all job listings are verified, providing job seekers.",
       },
       {
         title: "Effortless Application Process",
@@ -135,7 +131,8 @@ function About() {
         {/* First Row - Origin Story */}
         <div className="col-lg-6">
           <div className="utf-section-headline-item centered margin-top-0 margin-bottom-40">
-            <h3>Origin Story</h3>
+            <h3 class="fw-bold text-uppercase">OUR VISION</h3>
+
           </div>
           <div className="utf-card-content">
             {sections[0].content.map((text, index) => (
@@ -152,7 +149,7 @@ function About() {
         </div>
       </div>
 
-      {/* Second Row - Need for TWL */}
+      {/* Second Row - Need for 24IN MS */}
       <div className="row">
         <div className="col-12 mb-4">
           <div className="utf-sidebar-widget-item card-shadow">
@@ -168,7 +165,7 @@ function About() {
         </div>
       </div>
 
-      {/* Second Row - Three Cards (Job Seekers, Employers, Why TWL) */}
+      {/* Second Row - Three Cards (Job Seekers, Employers, Why 24IN MS) */}
       <div className="row">
         {sections.slice(2).map((section, index) => (
           <div className="col-md-4" key={index}>
