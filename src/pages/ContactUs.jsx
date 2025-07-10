@@ -73,43 +73,7 @@ function ContactUs() {
       </div>
 
       <div className="contact-content">
-        {/* Contact Info */}
-        <div className="contact-info">
-          <div className="info-card">
-            <h2>
-              <i className="fas fa-map-marker-alt"></i> Our Offices
-            </h2>
-
-            <div className="contact-method">
-              <i className="fas fa-phone"></i>
-              <div>
-                <h3>Phone</h3>
-                <p>8855055049, 7987300916</p>
-              </div>
-            </div>
-
-            <div className="contact-method">
-              <i className="fas fa-envelope"></i>
-              <div>
-                <h3>Email</h3>
-                <p>contact@theworkinglady.in</p>
-              </div>
-            </div>
-
-            {addressList.map((loc, index) => (
-              <div key={index} className="address-card">
-                <h3>{loc.city}</h3>
-                <p>{loc.address}</p>
-                <div className="contact-method">
-                  <i className="fas fa-phone"></i>
-                  <p>{loc.phones.join(", ")}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Contact Form */}
+        {/* Contact Form First */}
         <div className="contact-form-container">
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -183,6 +147,42 @@ function ContactUs() {
               {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
+        </div>
+
+        {/* Address Section After */}
+        <div className="contact-info">
+          <div className="info-card">
+            <h2>
+              <i className="fas fa-map-marker-alt"></i> Our Offices
+            </h2>
+
+            <div className="contact-method">
+              <i className="fas fa-phone"></i>
+              <div>
+                <h3>Phone</h3>
+                <p>8855055049, 7987300916</p>
+              </div>
+            </div>
+
+            <div className="contact-method">
+              <i className="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p>contact@theworkinglady.in</p>
+              </div>
+            </div>
+
+            {addressList.map((loc, index) => (
+              <div key={index} className="address-card">
+                <h3>{loc.city}</h3>
+                <p>{loc.address}</p>
+                <div className="contact-method">
+                  <i className="fas fa-phone"></i>
+                  <p>{loc.phones.join(", ")}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ const faqs = [
       "Payments are processed through our secure platform. Once a job is completed and confirmed by the client, the payment will be transferred to your account. You can set up your preferred payment method during registration.",
   },
   {
-    question: "Is there a fee to use The Working Lady platform?",
+    question: "Is there a fee to use 24In7 Maid Service platform?",
     answer:
       "For service providers, there are no registration fees. We charge a small commission on each job completed, which is deducted after payment. Clients are charged service fees to hire a service provider through the platform.",
   },
