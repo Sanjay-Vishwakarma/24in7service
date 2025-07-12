@@ -1,7 +1,7 @@
-/* Desktop navigation */
+/* Desktop navigation (light mode) */
 .nav-link {
   padding: 8px 12px;
-  color: black;
+  color: #3b4252;
   font-weight: 500;
   text-decoration: none;
   transition: 0.3s;
@@ -18,16 +18,18 @@
   border-bottom: 2px solid purple;
 }
 
-/* Mobile drawer nav */
+/* Mobile drawer nav (dark mode only) */
 .drawer-link {
   text-decoration: none;
-  color: black;
-  text-transform: uppercase;
 }
 
 .drawer-link.active .MuiListItem-root {
-  background-color: #f3e5f5;
+  background-color: #3700b3 !important;
   font-weight: bold;
+}
+
+.drawer-link.active .MuiListItemText-primary {
+  color: #ffffff !important;
 }
 
 /* Toolbar adjustments */
@@ -41,5 +43,9 @@
 @media (max-width: 600px) {
   .MuiToolbar-root {
     min-height: 56px;
+  }
+  
+  .MuiDrawer-paper {
+    width: 280px !important;
   }
 }

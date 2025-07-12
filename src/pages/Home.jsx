@@ -1,19 +1,10 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  CardMedia,
-  Modal,
-} from "@mui/material";
 import jobImg from "../assets/images/job.png";
 import mgHome from "../assets/images/background.jpg";
 import marketImg from "../assets/images/market.png";
 import wrhImg from "../assets/images/we-are-hiring.png";
 import ContactUs from "./ContactUs";
+import "./Home.css";
 
 const cardData = [
   {
@@ -21,25 +12,20 @@ const cardData = [
     title: "I need a Job/ मुझे नौकरी चाहिए",
     image: jobImg,
     link: "https://theworkinglady.in/job-list",
-    description: `Submit your applications easily and stay updated on new job openings.`,
-    hindi: `अपना आवेदन आसानी से जमा करें और नई नौकरी के अवसरों के बारे में अपडेट रहें।`,
+    description:
+      "Submit your applications easily and stay updated on new job openings. Your next job could be just a click away. Join now!",
+    hindi:
+      "अपने आवेदन आसानी से सबमिट करें और नई नौकरी के अवसरों के बारे में अपडेट रहें। आपकी अगली नौकरी बस एक क्लिक दूर हो सकती है। अभी जुड़ें!",
     isExternal: true,
   },
-  // {
-  //   id: 2,
-  //   title: "I'm Hiring/ मैं नियुक्ति कर रहा हूँ",
-  //   image: wrhImg,
-  //   link: "#", // Add actual modal or routing
-  //   description: `Post job listings and connect with skilled professionals.`,
-  //   hindi: `नौकरी की लिस्टिंग पोस्ट करें और कुशल पेशेवरों से जुड़ें।`,
-  //   isExternal: false,
-  // },
   {
-    id: 3,
+    id: 2,
     title: "JOIN US AS A HIRING PARTNER/ हमसे जुड़ें",
     image: marketImg,
-    description: `If you're a local maid agency and align with our vision, join us.`,
-    hindi: `यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़ते हैं, तो हमसे जुड़ें।`,
+    description:
+      "If you're a local maid agency and align with our vision & mission of being a trusted and reliable partner for our clients seeking our help in hiring domestic helpers, you're a right fit to work with us.",
+    hindi:
+      "यदि आप एक स्थानीय एजेंसी हैं और हमारे मिशन से जुड़े हैं, तो आप घरेलू सहायकों के काम पर रखने में हमारी मदद के लिए बिल्कुल उपयुक्त हैं।",
     isExternal: false,
     isContactUs: true,
   },
@@ -48,111 +34,75 @@ const cardData = [
 function Home() {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const handleOpenContactModal = () => {
-    setOpenContactModal(true);
-  };
-
-  const handleCloseContactModal = () => {
-    setOpenContactModal(false);
-  };
+  const handleOpenContactModal = () => setOpenContactModal(true);
+  const handleCloseContactModal = () => setOpenContactModal(false);
 
   return (
-    <Box sx={{ flexGrow: 1, px: 2, py: 4 }}>
-      {/* Contact Us Modal */}
-      <Modal
-        open={openContactModal}
-        onClose={handleCloseContactModal}
-        aria-labelledby="contact-us-modal"
-        aria-describedby="contact-us-form"
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: { xs: "90%", sm: "80%", md: "60%" },
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-            borderRadius: 2,
-            maxHeight: "90vh",
-            overflowY: "auto",
-          }}
-        >
-          <ContactUs onClose={handleCloseContactModal} />
-        </Box>
-      </Modal>
+    <div className="home-container">
+      {/* Contact Modal */}
+      {openContactModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button
+              className="modal-close-btn"
+              onClick={handleCloseContactModal}
+              aria-label="Close modal"
+            >
+              &times;
+            </button>
+            <ContactUs onClose={handleCloseContactModal} />
+          </div>
+        </div>
+      )}
 
-      {/* Hero Image Carousel */}
-      <Box
-        component="img"
-        src={mgHome}
-        alt="Hero"
-        sx={{
-          width: "100%",
-          height: "auto", // Allow the image to adjust based on width
-          maxHeight: { xs: 300, sm: 400, md: 500, lg: 600 }, // Optional: max height per screen size
-          objectFit: "cover", // or "contain" depending on your design
-          borderRadius: 2,
-          mb: 4,
-          display: "block", // avoids extra spacing below the image
-        }}
-      />
+      {/* Banner Image */}
+      <div className="banner-container">
+        <img
+          src={mgHome}
+          alt="Hero"
+          className="banner-image img-fluid"
+        />
+      </div>
 
-      {/* Section Title */}
-      <Box textAlign="center" mb={4}>
-        <Typography variant="h6" color="primary">
-          The working lady
-        </Typography>
-        <Typography variant="h4" sx={{ textTransform: "uppercase" }}>
-          A perfect solution
-        </Typography>
-        {/* <Typography variant="h5" color="text.secondary" fontStyle="italic">
-          I need a Job
-        </Typography> */}
-      </Box>
+      {/* Main Content */}
+      <div className="container main-content">
+        {/* Heading */}
+        <div className="text-center mb-5">
+          <h5 className="text-primary">24IN MAID SERVICE</h5>
+          <h1 className="main-heading">A Perfect Solution</h1>
+        </div>
 
-      {/* Cards Section */}
-      <Grid container spacing={4} justifyContent="center">
-        {cardData.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <Card sx={{ height: "100%", backgroundColor: "#f3e5f5" }}>
-              <CardMedia
-                component="img"
-                image={item.image}
-                alt={item.title}
-                sx={{ height: 180, objectFit: "contain", p: 2 }}
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  {item.title}
-                </Typography>
-                <Typography variant="body2">{item.description}</Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ mt: 1, fontStyle: "italic", color: "text.secondary" }}
-                >
-                  {item.hindi}
-                </Typography>
-                <Box mt={2}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    href={item.isExternal ? item.link : undefined}
-                    target={item.isExternal ? "_blank" : undefined}
-                    onClick={item.isContactUs ? handleOpenContactModal : undefined}
-                    fullWidth
-                  >
-                    Learn More
-                  </Button>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+        {/* Cards Grid - Centered layout */}
+        <div className="row justify-content-center custom-card-container">
+          {cardData.map((item) => (
+            <div key={item.id} className="col-12 col-md-6 col-lg-4 mb-4">
+              <div className="card custom-card h-100 mx-auto">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="card-img-top mx-auto card-image"
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title text-center">{item.title}</h5>
+                  <p className="card-text">{item.description}</p>
+                  <p className="card-text hindi-text">{item.hindi}</p>
+                  <div className="mt-auto pt-3">
+                    <button
+                      className="btn btn-primary w-100 custom-btn"
+                      onClick={
+                        item.isContactUs ? handleOpenContactModal : undefined
+                      }
+                    >
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

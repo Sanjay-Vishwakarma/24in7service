@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
-import { FaSignInAlt } from "react-icons/fa";
 import AuthModal from "../pages/AuthModal";
 import "./Header.css";
 
@@ -26,7 +25,6 @@ const navItems = [
   "JOBS",
   "BLOG",
   "CONTACT US"
-  
 ];
 
 const Header = () => {
@@ -39,7 +37,15 @@ const Header = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2, textTransform: 'uppercase' }}>
+      <Typography variant="h6" sx={{
+        my: 2,
+        textTransform: 'uppercase',
+        color: '#bb86fc',
+        fontWeight: 'bold',
+        letterSpacing: '1px',
+        padding: '16px',
+        borderBottom: '1px solid #333'
+      }}>
         24IN MAID SERVICE
       </Typography>
       <List>
@@ -51,10 +57,21 @@ const Header = () => {
               isActive ? "drawer-link active" : "drawer-link"
             }
           >
-            <ListItem button>
+            <ListItem sx={{
+              borderBottom: '1px solid #333',
+              transition: 'background-color 0.3s ease',
+              '&:hover': {
+                backgroundColor: '#252525'
+              }
+            }}>
               <ListItemText
                 primary={label}
-                primaryTypographyProps={{ style: { textTransform: 'uppercase' } }}
+                primaryTypographyProps={{
+                  style: {
+                    textTransform: 'uppercase',
+                    color: '#e0e0e0'
+                  }
+                }}
               />
             </ListItem>
           </NavLink>
@@ -65,16 +82,26 @@ const Header = () => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar component="nav" position="sticky" color="default" elevation={1}>
+      <AppBar
+        component="nav"
+        position="sticky"
+        color="default"
+        elevation={1}
+      >
         <Toolbar>
           {/* Logo - stays on left */}
-          <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
+          <Box sx={{
+            display: "flex",
+            alignItems: "center",
+            mr: 2
+          }}>
             <img
               src="/logo.jpg"
               alt="Logo"
               width="60"
               height="50"
-            /><span>24IN MAID SERVICE</span>
+            />
+            <span>24IN MAID SERVICE</span>
           </Box>
 
           {/* Centered Navigation */}
@@ -100,7 +127,6 @@ const Header = () => {
 
           {/* Mobile menu button (right-aligned) */}
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerToggle}
@@ -114,7 +140,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer - Dark Mode Only */}
       <Drawer
         anchor="right"
         open={mobileOpen}
@@ -124,7 +150,9 @@ const Header = () => {
           display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: 250,
+            width: 280,
+            backgroundColor: '#1a1a1a',
+            color: '#ffffff'
           },
         }}
       >

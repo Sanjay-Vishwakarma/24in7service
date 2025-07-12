@@ -1,64 +1,341 @@
-/* Footer heading style */
+/* Footer Base Styles */
+.footer-area {
+  position: relative;
+  background-color: #f8f9fa;
+  color: #333;
+  font-size: 1rem; /* Medium base font size */
+  line-height: 1.6;
+}
+
+/* Footer Brand */
+.footer-brand {
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand h4 {
+  color: #6a0dad;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.brand-icon {
+  margin-right: 10px;
+  font-size: 1.8rem;
+  vertical-align: middle;
+}
+
+/* Footer Heading */
 .footer-heading {
-    color: purple;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+  color: #6a0dad;
+  font-weight: 700;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #6a0dad, #a855f7);
+}
+
+/* Footer Links Container */
+.footer-links-container {
+  margin-bottom: 2rem;
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-link {
+  color: #495057;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+.footer-link:hover {
+  color: #6a0dad;
+  transform: translateX(5px);
+}
+
+.link-arrow {
+  color: #6a0dad;
+  margin-right: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Contact Info */
+.contact-item {
+  display: flex;
+  margin-bottom: 1.2rem;
+  align-items: flex-start;
+}
+
+.contact-item svg {
+  color: #6a0dad;
+  margin-right: 10px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.contact-item div {
+  flex-grow: 1;
+}
+
+.contact-item strong {
+  display: block;
+  color: #343a40;
+  margin-bottom: 0.3rem;
+}
+
+.contact-item p {
+  margin-bottom: 0.3rem;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 1.5rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #6a0dad;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.social-icon:hover {
+  background-color: #6a0dad;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(106, 13, 173, 0.3);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid #dee2e6;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.float-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.float-btn.call {
+  background-color: #28a745;
+}
+
+.float-btn.whatsapp {
+  background-color: #25D366;
+}
+
+.float-btn.to-top {
+  background-color: #6a0dad;
+}
+
+.float-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .footer-area {
+    text-align: center;
   }
   
-  /* Social icons */
-  .social-icons a {
-    color: #6c757d;
-    transition: color 0.3s;
+  .footer-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
   
-  .social-icons a:hover {
-    color: purple;
-  }
-  
-  /* Floating buttons */
-  .floating-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
+  .contact-item {
     flex-direction: column;
-    z-index: 1000;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contact-item svg {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-links-container .row {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  .footer-links-container .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .footer-link {
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+  
+  .footer-heading {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-brand h4 {
+    font-size: 1.3rem;
+  }
+  
+  .footer-heading {
+    font-size: 1rem;
+  }
+  
+  .footer-link {
+    font-size: 0.9rem;
   }
   
   .float-btn {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    color: white;
-    font-size: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
+    font-size: 1.2rem;
   }
   
-  .float-btn.call {
-    background-color: #28a745;
+  .footer-links li {
+    margin-bottom: 0.6rem;
   }
   
-  .float-btn.whatsapp {
-    background-color: #25D366;
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
-  
-  .float-btn.to-top {
-    background-color: purple;
-  }
-  
-  .float-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Text purple utility */
-  .text-purple {
-    color: purple !important;
-  }
+}
 
+/* Special Mobile Fix for Links Side-by-Side */
+@media (max-width: 767px) {
+  .footer-links-container {
+    overflow: hidden;
+  }
+  
+  .footer-links-container .row {
+    flex-wrap: nowrap;
+    overflow: visible;
+  }
+  
+  .footer-links-container .col-6 {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+}
+
+/* Footer Links Container - Mobile Fix */
+.footer-links-container {
+  overflow: visible !important;
+}
+
+/* Force side-by-side layout */
+.footer-links-container .d-flex {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+}
+
+/* Column styling */
+.footer-links-container .flex-grow-1 {
+  flex: 1 1 50% !important;
+  min-width: 0; /* Prevent flex item overflow */
+}
+
+/* Remove default padding that might cause wrapping */
+.footer-links-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .footer-links-container {
+    margin-top: 1.5rem;
+  }
+  
+  .footer-links-container .d-flex {
+    overflow: visible !important;
+  }
+  
+  .footer-links {
+    padding-right: 10px;
+  }
+  
+  .footer-link {
+    white-space: normal !important;
+    word-break: break-word;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 576px) {
+  .footer-links-container .flex-grow-1 {
+    flex: 1 1 45% !important;
+  }
+  
+  .footer-link {
+    font-size: 0.85rem;
+  }
+}
