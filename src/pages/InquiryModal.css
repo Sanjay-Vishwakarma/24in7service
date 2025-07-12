@@ -1,135 +1,191 @@
+/* Modal Overlay */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    z-index: 9999;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+}
+
+/* Modal Container */
+.modal-container {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0 2.5rem 1rem 1.5rem;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  padding: 0 1rem; /* Ensures text never touches edges */
+}
+
+/* Enhanced Close Button */
+.close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  background: #f8f9fa;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #6a0dad;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: #6a0dad;
+  color: white;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.close-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Modal Content */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-input, 
+select, 
+textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus, 
+select:focus, 
+textarea:focus {
+  outline: none;
+  border-color: #6a0dad;
+  box-shadow: 0 0 0 2px rgba(106, 13, 173, 0.2);
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* Submit Section */
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.submit-button {
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.submit-button:disabled {
+  background-color: #b19cd9;
+  cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #5a0a9d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
   .modal-container {
-    background: white;
+    padding: 1.25rem;
+    max-height: 95vh;
     border-radius: 8px;
-    width: 100%;
-    max-width: 500px;
-    max-height: 80vh; /* max height so it doesn’t overflow full screen */
-    padding: 1.5rem 1.5rem 2rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    position: relative;
-    overflow-y: auto; /* enables vertical scroll inside modal if content is tall */
-  }
-  
-  /* Close icon button */
-  .close-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: transparent;
-    border: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: #888;
-    transition: color 0.3s ease;
-    line-height: 1;
-  }
-  
-  .close-button:hover {
-    color: #000;
   }
   
   .modal-header {
-    display: flex;
-    justify-content: center; /* Center title, close icon is absolute */
-    align-items: center;
-    margin-bottom: 1rem;
-    position: relative; /* for stacking */
+    padding: 0 2rem 1rem 1rem;
   }
   
   .modal-title {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    width: 100%;
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
   }
   
-  .modal-form {
-    display: flex;
-    flex-direction: column;
+  .close-button {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1.1rem;
+    top: 0.25rem;
+    right: 0.25rem;
   }
   
-  .form-group {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group label {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: #333;
-  }
-  
-  .form-input, select, textarea {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 0.85rem;
-    margin-top: 0.25rem;
-  }
-  
-  .submit-container {
-    display: flex;
-    justify-content: center;
+  .form-input, 
+  select, 
+  textarea {
+    padding: 0.65rem;
   }
   
   .submit-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    padding: 0.75rem;
   }
-  
-  .submit-button:disabled {
-    background-color: #a0c5f8;
-    cursor: not-allowed;
-  }
-  
-  .submit-button:hover:not(:disabled) {
-    background-color: #0056b3;
-  }
-  
-  /* Responsive */
-  
-  @media (max-width: 480px) {
-    .modal-container {
-      max-width: 100%;
-      padding: 1rem;
-    }
-  
-    .submit-button {
-      width: 100%;
-    }
-  }
-  
+}

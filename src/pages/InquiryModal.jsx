@@ -127,7 +127,7 @@ function InquiryModal({ onClose }) {
                         aria-label="Close"
                         disabled={isSubmitting}
                     >
-                        ×
+                        &times;
                     </button>
                 </div>
 
