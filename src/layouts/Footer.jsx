@@ -83,9 +83,11 @@ const Footer = () => {
                                     <div className="contact-item">
                                         <MdLocationOn className="text-purple me-2" />
                                         <div>
-                                            <strong>Indore (REGD):</strong>
-                                            <p className="mb-1">AS 25/ Mahalaxmi Nagar, Vijay Nagar, MP 452010</p>
-                                            <span>8855055049 / 7987300916</span>
+                                            <strong>Mumbai (PAN INDIA):</strong>
+                                            <p className="mb-1">Shivaji Chowk, Anand Nagar
+                                                Appapada, Kurar Village, Malad (East)
+                                                Mumbai – 400097</p>
+                                            <span>9082295602 / 9594013627</span>
                                         </div>
                                     </div>
                                 </li>
@@ -94,12 +96,14 @@ const Footer = () => {
                                         <MdLocationOn className="text-purple me-2" />
                                         <div>
                                             <strong>Delhi:</strong>
-                                            <p className="mb-1">House No. 15, Railway Enclave Phase 2nd, Ghaziabad</p>
-                                            <span>8855055049</span>
+                                            <p className="mb-1">H2, Rishal Garden
+                                                Near Nangloi Railway Station
+                                                New Delhi – 110041</p>
+                                            <span>9082295602</span>
                                         </div>
                                     </div>
                                 </li>
-                                <li className="mb-3">
+                                {/* <li className="mb-3">
                                     <div className="contact-item">
                                         <MdLocationOn className="text-purple me-2" />
                                         <div>
@@ -108,14 +112,14 @@ const Footer = () => {
                                             <span>8855055049 / 7084906501</span>
                                         </div>
                                     </div>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="footer-bottom pt-4 mt-4 border-top text-center">
+                <div className="footer-bottom pt-3 mt-3 border-top text-center">
                     <div className="row align-items-center">
                         <div className="col-md-12">
                             <p className="small text-muted mb-0">

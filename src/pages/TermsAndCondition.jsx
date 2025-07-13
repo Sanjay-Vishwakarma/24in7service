@@ -15,11 +15,11 @@ function TermsAndCondition() {
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Paper elevation={3} sx={{ p: 4 }}>
                 <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ fontWeight: 'bold' }}>
-                    Kaamwalibais.com
+                    24inmaidservice.in
                 </Typography>
 
                 <Typography variant="body1" paragraph>
-                    These Terms and Conditions ("Agreement") govern the relationship between Kaamwalibais.com (hereinafter referred to as "the Company", "We", "Our") and the Client (hereinafter referred to as "You" or "the Client") engaging in our placement consultancy services. By utilizing the services provided by Kaamwalibais.com, you agree to be bound by these terms and conditions. If you do not agree to these terms, you must refrain from using our services.
+                    These Terms and Conditions ("Agreement") govern the relationship between 24inmaidservice.in (hereinafter referred to as "the Company", "We", "Our") and the Client (hereinafter referred to as "You" or "the Client") engaging in our placement consultancy services. By utilizing the services provided by 24inmaidservice.in, you agree to be bound by these terms and conditions. If you do not agree to these terms, you must refrain from using our services.
                 </Typography>
 
                 <Divider sx={{ my: 3 }} />
@@ -28,7 +28,7 @@ function TermsAndCondition() {
                     1. Introduction
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    1.1 Kaamwalibais.com is a placement consultancy agency operating across all major metro cities in India. We offer various placement services, which includes Housemaids, Cooks, Babysitters, Nannies, Patient Caregivers, Elder Caregivers, Japa Maids, and more. These services are subject to the following terms and conditions, which govern the responsibilities, obligations, and liabilities of both parties.
+                    1.1 24inmaidservice.in is a placement consultancy agency operating across all major metro cities in India. We offer various placement services, which includes Housemaids, Cooks, Babysitters, Nannies, Patient Caregivers, Elder Caregivers, Japa Maids, and more. These services are subject to the following terms and conditions, which govern the responsibilities, obligations, and liabilities of both parties.
                 </Typography>
 
                 <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold', mt: 3 }}>
@@ -72,7 +72,7 @@ function TermsAndCondition() {
                         <ListItemText primary="4.1 The Client is eligible for up to three replacements of a Candidate during the contract term, subject to availability." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="4.2 If you wish to retain a Candidate beyond the initial one-year period, a new contract must be executed with Kaamwalibais.com." />
+                        <ListItemText primary="4.2 If you wish to retain a Candidate beyond the initial one-year period, a new contract must be executed with 24inmaidservice.in." />
                     </ListItem>
                     <ListItem>
                         <ListItemText primary="4.3 If the Candidate resigns, leaves, or is terminated, we will provide a replacement subject to availability, within the constraints of these terms." />
@@ -80,32 +80,60 @@ function TermsAndCondition() {
                 </List>
 
                 <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold', mt: 3 }}>
-                    5. Cancellation Policy
+                    5. Refund / Cancellation Policy
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="5.1 Cancellation: The Client may cancel services by providing reasonable prior written notice. However, all service fees paid are non-refundable, except as expressly provided in subsection 5.2 below." />
+                        <ListItemText primary="This refund and cancellation policy outlines how you can cancel or seek a refund for the services that you have purchased through the Platform. Under this policy:" />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="5.2 Limited Refund for Non-Delivery of Profile Leads: A refund, limited to fifty percent (50%) of the advance payment done initially at the time of agreement, shall be issued if the Company fails to provide the Client with candidate profile leads for the requested position within seven (7) business days from the date of receipt of the initial payment. It is important to note that this does not mean the candidate should reach the workplace within 7 days." />
+                        <ListItemText primary="A. The subscription charge of Rs. 999/- is refundable in the case where the customer pays the subscription charge but chooses not to take any interviews of the candidate due to any reason. (The Application money will be refunded for a 24 hours worker booking only if 24IN MAID SERVICE is unable to line up a minimum of one candidate for interview within 10 working days of paying the advance money due to the limitations of our team. Processing fee of Rs.300 will be deducted.)" />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="5.3 Clarification of Service Delivery: For the avoidance of doubt, the Company's obligation under subsection (b) is limited to the provision of candidate profile leads for interview purposes within the specified seven (7) business day timeframe. This obligation does not extend to ensuring that a candidate commences employment within that timeframe or any other specific timeframe." />
+                        <ListItemText primary="B. The application money of Rs. 999/- may be refunded only if 24IN MAID SERVICE is unable to line up any candidates for interview due to the non-availability of required HELP within 15 working days of giving us application money. (No Refund will be made in any case where the Conference call process has started i.e. the client has done at least one conference call interview with a worker)." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="5.4 Exclusive Refund Policy: Except as expressly provided in subsection 5.2 above, all service fees are non-refundable under any circumstances." />
+                        <ListItemText primary="C. Since the salary expectation of maid keep changing it might not be possible to find a maid in the same salary as your previous maid in case of replacement. NO REFUND claims will be entertained if you cannot revise your salary budget according to on-going market rate. However we will try it level best to try and find a new maid in same salary." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="5.5 Website Refund Policy: For further details regarding the Company's refund policy, please refer to the complete refund policy. The website policy is incorporated into this agreement by reference and shall prevail in case of any conflict with this section." />
+                        <ListItemText primary="D. The Client agrees that the maid will be not be tortured, harmed mentally or physically. Also the Client cannot increase the work or reduce the salary of the maid other than what was discussed during the interview and mentioned in the agreement, without informing 24IN MAID SERVICE and mutual agreement with the Househelp. If the maid leaves due to any such reason, 24IN MAID SERVICE will not replace the maid and NO REFUND will be initiated." />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary="E. Conditions to Meet for Placement Fee Refund:" />
+                    </ListItem>
+                    <ListItem sx={{ pl: 4 }}>
+                        <ListItemText primary="• If Zero Replacements are used at the time of raising the refund request (hired just one candidate with trial done): 50% of Placement Fee Between 1- 15 days of placement; 25% of Placement Fee Between 15 days - 30 days of placement; 0% of Placement Fee post 30 days of Placement." />
+                    </ListItem>
+                    <ListItem sx={{ pl: 4 }}>
+                        <ListItemText primary="• Under no circumstance a refund request will be entertained where the client has not paid the salary dues in full for the worker hired through 24IN MAID SERVICE." />
+                    </ListItem>
+                    <ListItem sx={{ pl: 4 }}>
+                        <ListItemText primary="• 24IN MAID SERVICE does not accept cancellation requests where the process of hiring a candidate has started." />
+                    </ListItem>
+                    <ListItem sx={{ pl: 4 }}>
+                        <ListItemText primary="• NO REFUND claims will be entertained if you cannot revise your salary budget according to on-going market rate for the replacements." />
+                    </ListItem>
+                    <ListItem sx={{ pl: 4 }}>
+                        <ListItemText primary="• However, the refund / replacement can be made in alliance with the cause mentioned in point E." />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary="F. In case of receipt of non-satisfied services, please report to our customer service team. The request would be entertained after successful verification of the case. This should be reported within 15 days of application. In case you feel that the service received is not as shown on the site or as per your expectations, you must bring it to the notice of our customer service within 15 days of application. The customer service team after looking into your complaint will take an appropriate decision." />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary="G. In case of complaints regarding the services that come with the candidate, please refer the issue to them before reaching out to us." />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary="H. In case of any refunds approved by 24IN MAID SERVICE, it will take 7 days for the refund to be processed to you." />
                     </ListItem>
                 </List>
+
 
                 <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold', mt: 3 }}>
                     6. Candidate Verification and Documentation
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="6.1 Kaamwalibais.com shall provide you with the necessary documentation related to the Candidate, but we strongly advise the Client to conduct police verification and medical test of the Candidate independently for your safety and peace of mind. We are not responsible for any criminal activity or misconduct by the Candidate." />
+                        <ListItemText primary="6.1 24inmaidservice.in shall provide you with the necessary documentation related to the Candidate, but we strongly advise the Client to conduct police verification and medical test of the Candidate independently for your safety and peace of mind. We are not responsible for any criminal activity or misconduct by the Candidate." />
                     </ListItem>
                     <ListItem>
                         <ListItemText primary="6.2 The Client must thoroughly inspect the Candidate's belongings (e.g., bags, items) at the time of arrival and departure, to ensure there are no discrepancies or thefts." />
@@ -117,13 +145,13 @@ function TermsAndCondition() {
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="7.1 Kaamwalibais.com expressly disclaims any and all liability for the actions or omissions of any Candidate provided to the Client. The Client is responsible for all issues arising from misconduct, theft, damage, or any other issue involving the Candidate." />
+                        <ListItemText primary="7.1 24inmaidservice.in expressly disclaims any and all liability for the actions or omissions of any Candidate provided to the Client. The Client is responsible for all issues arising from misconduct, theft, damage, or any other issue involving the Candidate." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="7.2 Any financial or personal losses incurred due to the actions of the Candidate, including theft, property damage, or any misconduct, shall not be the responsibility of Kaamwalibais.com." />
+                        <ListItemText primary="7.2 Any financial or personal losses incurred due to the actions of the Candidate, including theft, property damage, or any misconduct, shall not be the responsibility of 24inmaidservice.in." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="7.3 You agree to hold Kaamwalibais.com harmless from any legal claims or disputes arising from such issues, and you will not hold the Company liable in any manner for damages or losses." />
+                        <ListItemText primary="7.3 You agree to hold 24inmaidservice.in harmless from any legal claims or disputes arising from such issues, and you will not hold the Company liable in any manner for damages or losses." />
                     </ListItem>
                 </List>
 
@@ -132,13 +160,13 @@ function TermsAndCondition() {
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="8.1 Kaamwalibais.com is a maid recruitment agency that connects clients with potential candidates. By using our services, clients acknowledge and agree that:" />
+                        <ListItemText primary="8.1 24inmaidservice.in is a maid recruitment agency that connects clients with potential candidates. By using our services, clients acknowledge and agree that:" />
                     </ListItem>
                     <ListItem sx={{ pl: 4 }}>
-                        <ListItemText primary="8.1.1. Candidate Employment Status: The candidate(s) introduced to the client through our platform will be considered employees of the client, and not employees of Kaamwalibais.com" />
+                        <ListItemText primary="8.1.1. Candidate Employment Status: The candidate(s) introduced to the client through our platform will be considered employees of the client, and not employees of 24inmaidservice.in" />
                     </ListItem>
                     <ListItem sx={{ pl: 4 }}>
-                        <ListItemText primary="8.1.2. No Vicarious Liability: Kaamwalibais.com shall not be held responsible or liable under the doctrine of vicarious liability for any actions, omissions, or wrongdoing of the candidate(s) employed by the client." />
+                        <ListItemText primary="8.1.2. No Vicarious Liability: 24inmaidservice.in shall not be held responsible or liable under the doctrine of vicarious liability for any actions, omissions, or wrong doing of the candidate(s) employed by the client." />
                     </ListItem>
                     <ListItem sx={{ pl: 4 }}>
                         <ListItemText primary="8.1.3. Client Responsibility: The client acknowledges that they are solely responsible for the supervision, management, and control of the candidate(s) employed by them, and for ensuring compliance with all applicable laws and regulations." />
@@ -150,7 +178,7 @@ function TermsAndCondition() {
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="9.1 All terms and conditions which includes pricing, contractual arrangements, and Candidate details, are strictly confidential. The Client agrees not to share, disclose, or communicate these details to any third party without the express written consent of Kaamwalibais.com." />
+                        <ListItemText primary="9.1 All terms and conditions which includes pricing, contractual arrangements, and Candidate details, are strictly confidential. The Client agrees not to share, disclose, or communicate these details to any third party without the express written consent of 24inmaidservice.in." />
                     </ListItem>
                 </List>
 
@@ -165,7 +193,7 @@ function TermsAndCondition() {
                         <ListItemText primary="10.2 You must ensure that the tasks outlined in your service request align with the Candidate's qualifications and experience." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="10.3 You must review all documents, references, and information provided by Kaamwalibais.com regarding the Candidate." />
+                        <ListItemText primary="10.3 You must review all documents, references, and information provided by 24inmaidservice.in regarding the Candidate." />
                     </ListItem>
                 </List>
 
@@ -177,7 +205,7 @@ function TermsAndCondition() {
                         <ListItemText primary="11.1 The Company recommends that the Client, at their own expense, consider conducting a medical examination of the Candidate, especially in cases involving sensitive roles such as caregiving." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="11.2 Kaamwalibais.com is not responsible for any health, safety, or other risks associated with employing a Candidate." />
+                        <ListItemText primary="11.2 24inmaidservice.in is not responsible for any health, safety, or other risks associated with employing a Candidate." />
                     </ListItem>
                 </List>
 
@@ -201,7 +229,7 @@ function TermsAndCondition() {
                         <ListItemText primary="13.1 In case of any complaints or grievance the client may contact our Grievance Officer." />
                     </ListItem>
                     <ListItem sx={{ pl: 4 }}>
-                        <ListItemText primary="13.2 Contact Number: +918767078888" />
+                        <ListItemText primary="13.2 Contact Number: +91 9082295602" />
                     </ListItem>
                     <ListItem sx={{ pl: 4 }}>
                         <ListItemText primary="13.3 The Grievance officer shall resolve the complaints or grievance within a reasonable time frame." />
@@ -213,10 +241,10 @@ function TermsAndCondition() {
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="14.1 Under no circumstances will Kaamwalibais.com be held liable for any indirect, consequential, or punitive damages arising from the Client's use of our services." />
+                        <ListItemText primary="14.1 Under no circumstances will 24inmaidservice.in be held liable for any indirect, consequential, or punitive damages arising from the Client's use of our services." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="14.2 The Company's total liability to the Client, whether in contract, tort, or otherwise, shall be limited to the amount of the service fee paid by the Client to Kaamwalibais.com." />
+                        <ListItemText primary="14.2 The Company's total liability to the Client, whether in contract, tort, or otherwise, shall be limited to the amount of the service fee paid by the Client to 24inmaidservice.in." />
                     </ListItem>
                 </List>
 
@@ -225,13 +253,13 @@ function TermsAndCondition() {
                 </Typography>
                 <List dense>
                     <ListItem>
-                        <ListItemText primary="15.1 These Terms and Conditions constitute the entire Agreement between the parties regarding the services provided by Kaamwalibais.com. Any modifications to this Agreement must be made in writing and agreed upon by both parties." />
+                        <ListItemText primary="15.1 These Terms and Conditions constitute the entire Agreement between the parties regarding the services provided by 24inmaidservice.in. Any modifications to this Agreement must be made in writing and agreed upon by both parties." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="15.2 By accepting these Terms and Conditions, clients release and hold harmless Kaamwalibais.com, its officers, directors, employees, and agents from any and all claims, demands, or liabilities arising from or related to the employment of candidate(s) introduced through our platform." />
+                        <ListItemText primary="15.2 By accepting these Terms and Conditions, clients release and hold harmless 24inmaidservice.in, its officers, directors, employees, and agents from any and all claims, demands, or liabilities arising from or related to the employment of candidate(s) introduced through our platform." />
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="15.3 By accepting these Terms and Conditions, clients release and hold harmless Kaamwalibais.com, its officers, directors, employees, and agents from any and all claims, demands, or liabilities arising from or related to the employment of candidate(s) introduced through our platform." />
+                        <ListItemText primary="15.3 By accepting these Terms and Conditions, clients release and hold harmless 24inmaidservice.in, its officers, directors, employees, and agents from any and all claims, demands, or liabilities arising from or related to the employment of candidate(s) introduced through our platform." />
                     </ListItem>
                 </List>
 
