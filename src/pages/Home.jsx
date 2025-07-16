@@ -4,6 +4,7 @@ import mgHome from "../assets/images/background.jpg";
 import marketImg from "../assets/images/market.png";
 import wrhImg from "../assets/images/we-are-hiring.png";
 import ContactUs from "./ContactUs";
+import Job from "./Job";
 import "./Home.css";
 import { Helmet } from "react-helmet"; // ✅ Added for SEO
 
@@ -13,12 +14,12 @@ const cardData = [
     id: 1,
     title: "I need a Job/ मुझे नौकरी चाहिए",
     image: jobImg,
-    link: "https://theworkinglady.in/job-list",
     description:
       "Submit your applications easily and stay updated on new job openings. Your next job could be just a click away. Join now!",
     hindi:
       "अपने आवेदन आसानी से सबमिट करें और नई नौकरी के अवसरों के बारे में अपडेट रहें। आपकी अगली नौकरी बस एक क्लिक दूर हो सकती है। अभी जुड़ें!",
-    isExternal: true,
+    isExternal: false,
+    isJob: true,
   },
   {
     id: 2,
@@ -38,6 +39,7 @@ function Home() {
 
   const handleOpenContactModal = () => setOpenContactModal(true);
   const handleCloseContactModal = () => setOpenContactModal(false);
+  const [openJobModal, setOpenJobModal] = useState(false);
 
   return (
 
@@ -70,14 +72,17 @@ function Home() {
         {openContactModal && (
           <div className="modal-overlay">
             <div className="modal-content">
-              <button
-                className="modal-close-btn"
-                onClick={handleCloseContactModal}
-                aria-label="Close modal"
-              >
-                &times;
-              </button>
+              <button className="modal-close-btn" onClick={handleCloseContactModal}>&times;</button>
               <ContactUs onClose={handleCloseContactModal} />
+            </div>
+          </div>
+        )}
+
+        {openJobModal && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <button className="modal-close-btn" onClick={() => setOpenJobModal(false)}>&times;</button>
+              <Job onClose={() => setOpenJobModal(false)} />
             </div>
           </div>
         )}
@@ -117,7 +122,11 @@ function Home() {
                       <button
                         className="btn btn-primary w-100 custom-btn"
                         onClick={
-                          item.isContactUs ? handleOpenContactModal : undefined
+                          item.isContactUs
+                            ? handleOpenContactModal
+                            : item.isJob
+                              ? () => setOpenJobModal(true)
+                              : undefined
                         }
                       >
                         Learn More

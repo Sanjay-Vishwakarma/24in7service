@@ -86,9 +86,9 @@ function InquiryModal({ onClose }) {
                 description: formData.description
             };
 
-            const response = await axiosInstance.post(API_ENDPOINTS.INQUIRY_DETAILS, payload);
-
+            const response = await axiosInstance.post(API_ENDPOINTS.INQUIRY_DETAILS, payload);    
             if (response.data) {
+                console.log('Toast should show now');
                 showToast('Thank you for your inquiry! We will contact you soon.', 'success');
                 setFormData({
                     name: '',
@@ -99,7 +99,10 @@ function InquiryModal({ onClose }) {
                     phone: '',
                     description: ''
                 });
-                onClose();
+                // Delay the modal closing slightly (let toast render first)
+                setTimeout(() => {
+                    onClose();
+                }, 100); // 100–300ms is enough
             }
         } catch (error) {
             console.error('Submission error:', error);
@@ -116,7 +119,7 @@ function InquiryModal({ onClose }) {
 
     return (
         <div className="modal-overlay">
-            <ToastNotification />
+           
             <div className="modal-container">
                 <div className="modal-header">
                     <h5 className="modal-title">What service are you looking for?</h5>

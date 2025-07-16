@@ -44,23 +44,16 @@ function ContactUs() {
   };
 
   const addressList = [
+  
     {
-      city: "Indore (Regd)",
-      address:
-        "AS 25/ MAHALAXMI NAGAR, Sector A, Vijay Nagar, Indore, Madhya Pradesh 452010",
-      phones: ["8855055049", "7987300916", "7084906501"],
+      city: "Mumbai(Pan India)",
+      address:"Shivaji Chowk, Anand Nagar Appapada, Kurar Village, Malad(East) Mumbai – 400097",
+      phones: ["9082295602","9594013627"],
     },
     {
       city: "Delhi",
-      address:
-        "HOUSE NO. 15, RAILWAY ENCLAVE PHASE 2ND, Girdharpur Rd, near ANANT ENTERPRISES, Lal Kuan, Ghaziabad, Uttar Pradesh 201009",
-      phones: ["8855055049"],
-    },
-    {
-      city: "Mumbai",
-      address:
-        "107 OMKAR CHS, Veera Desai Road, near Spots Club, Andheri (W), Mumbai 400053, Maharashtra",
-      phones: ["8855055049", "7084906501"],
+      address:"H2, Rishal Garden Near Nangloi Railway Station New Delhi – 110041",
+      phones: ["9082295602"],
     },
   ];
 
@@ -160,7 +153,7 @@ function ContactUs() {
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
-                <p>8855055049, 7987300916</p>
+                <p>9082295602, 9594013627</p>
               </div>
             </div>
 
@@ -168,7 +161,7 @@ function ContactUs() {
               <i className="fas fa-envelope"></i>
               <div>
                 <h3>Email</h3>
-                <p>contact@theworkinglady.in</p>
+                <p>24inmaidservice@gmail.com</p>
               </div>
             </div>
 
