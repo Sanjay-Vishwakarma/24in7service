@@ -43,6 +43,8 @@ npm install react-bootstrap bootstrap
 npm install react-material-ui-carousel
 npm i react-toastify
 npm install axios
+npm install react-helmet // for SEO
+
 
 npm install react-material-ui-carousel --legacy-peer-deps //  force install if verion  The error means react-material-ui-carousel@3.4.2 does not yet support React 19 — it only supports React 17 and 18.
 
