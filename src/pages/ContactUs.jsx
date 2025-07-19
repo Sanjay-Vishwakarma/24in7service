@@ -33,7 +33,10 @@ function ContactUs({ onClose, isModal = false }) {
           email: "",
           description: "",
         });
-        if (onClose) onClose();
+      
+        setTimeout(() => {
+          if (onClose) onClose();
+        }, 1000); // Wait 1 second to allow toast to display
       }
     } catch (error) {
       console.error("Error submitting form:", error);
