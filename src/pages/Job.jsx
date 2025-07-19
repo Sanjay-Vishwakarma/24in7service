@@ -15,18 +15,32 @@ import {
   FormControlLabel,
   Checkbox,
   Typography,
-  Divider
+  Divider,
+  DialogActions,
+  IconButton
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import axiosInstance from "./../config/axiosInstance";
 import { API_ENDPOINTS } from './../config/apiEndpoints';
 import { showToast, ToastNotification } from "./../utils/ToastNotification";
 
-
-const Job = () => {
-  const [open, setOpen] = useState(false);
+const Job = ({ hideButton = false, onClose, open: propOpen }) => {
+  const [internalOpen, setInternalOpen] = useState(!hideButton);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Use propOpen if provided (from parent), otherwise use internal state
+  const isOpen = typeof propOpen !== 'undefined' ? propOpen : internalOpen;
+
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      setInternalOpen(false);
+    }
+  };
+
+  const handleOpen = () => setInternalOpen(true);
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -81,14 +95,13 @@ const Job = () => {
         : prev[name].filter(item => item !== value)
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
       const formDataToSend = new FormData();
-
-      // Add the JSON data as a string
       const jsonData = {
         fullName: formData.fullName,
         mobile: formData.mobile,
@@ -107,11 +120,9 @@ const Job = () => {
         languages: formData.languages
       };
 
-      // Append as Blob to ensure proper formatting
       const jsonBlob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
       formDataToSend.append('data', jsonBlob);
 
-      // Append files
       if (formData.aadharCard) {
         formDataToSend.append('aadharCard', formData.aadharCard);
       }
@@ -119,27 +130,19 @@ const Job = () => {
         formDataToSend.append('image', formData.image);
       }
 
-      // Debug: Log FormData contents
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(key, value);
-      }
-
-      // Send the request
-      const response = await axiosInstance.post(
+      await axiosInstance.post(
         API_ENDPOINTS.JOB_APPLICATION,
         formDataToSend,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-          transformRequest: (data) => data, // Important: prevent axios from transforming FormData
+          transformRequest: (data) => data,
         }
       );
 
-      // Handle success
       showToast('Thank you for applying for the job! We will contact you soon.', 'success');
 
-      // Reset form
       setFormData({
         fullName: '',
         mobile: '',
@@ -159,8 +162,8 @@ const Job = () => {
         aadharCard: null,
         image: null
       });
-      setOpen(false);
 
+      handleClose();
     } catch (error) {
       console.error('Error submitting form:', error);
       showToast(
@@ -172,45 +175,78 @@ const Job = () => {
       setIsSubmitting(false);
     }
   };
+
   return (
     <>
-    <ToastNotification />
+      <ToastNotification />
 
-      <div style={{ textAlign: 'center', marginTop: 50, marginBottom: 50 }}>
-        <Button
-          variant="contained"
-          onClick={() => setOpen(true)}
-          sx={{
-            backgroundColor: '#ff6b6b',
-            color: 'white',
-            padding: '12px 30px',
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
-            borderRadius: '50px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-            '&:hover': {
-              backgroundColor: '#ff5252',
-              transform: 'translateY(-2px)'
-            }
-          }}
-        >
-          Click here to apply
-        </Button>
+      {!hideButton && (
+        <div style={{ textAlign: 'center', marginTop: 50, marginBottom: 50 }}>
+          <Button
+            variant="contained"
+            onClick={handleOpen}
+            sx={{
+              backgroundColor: '#ff6b6b',
+              color: 'white',
+              padding: '12px 30px',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              borderRadius: '50px',
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+              '&:hover': {
+                backgroundColor: '#ff5252',
+                transform: 'translateY(-2px)'
+              }
+            }}
+          >
+            Click here to apply
+          </Button>
         </div>
+      )}
 
       <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
+        open={isOpen}
+        onClose={handleClose}
         maxWidth="md"
         fullWidth
         scroll="paper"
+        sx={{
+          '& .MuiDialog-container': {
+            alignItems: 'flex-start'
+          },
+          '& .MuiDialog-paper': {
+            margin: { xs: '16px', sm: '32px' },
+            width: { xs: 'calc(100% - 32px)', sm: '100%' },
+            maxWidth: '800px',
+            maxHeight: '90vh'
+          }
+        }}
       >
-        <DialogTitle>
-          <Typography variant="h4" align="center">
+        <DialogTitle sx={{
+          backgroundColor: '#f5f5f5',
+          borderBottom: '1px solid #e0e0e0',
+          padding: '16px 24px',
+          position: 'relative',
+          pr: '50px' // Make room for close button
+        }}>
+          <Typography variant="h5" align="center" sx={{ fontWeight: 'bold' }}>
             APPLY FOR A JOB (नौकरी के लिए आवेदन करे)
           </Typography>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 16,
+              top: 16,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
-        <DialogContent dividers>
+
+        <DialogContent dividers sx={{ padding: { xs: '16px', sm: '24px' } }}>
           <Box sx={{ backgroundColor: '#fff8f8', p: 2, mb: 3, borderRadius: 1 }}>
             <Typography variant="body1" color="error" gutterBottom>
               <strong>Note:</strong>
@@ -234,7 +270,7 @@ const Job = () => {
           <form onSubmit={handleSubmit}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               {/* Personal Information */}
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
                 <TextField
                   fullWidth
                   label="Full Name (नाम)"
@@ -242,7 +278,6 @@ const Job = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  sx={{ minWidth: 200, flexGrow: 1 }}
                 />
                 <TextField
                   fullWidth
@@ -252,12 +287,12 @@ const Job = () => {
                   onChange={handleChange}
                   inputProps={{ maxLength: 10, pattern: '[0-9]{10}' }}
                   required
-                  sx={{ minWidth: 200, flexGrow: 1 }}
                 />
               </Box>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                <FormControl fullWidth sx={{ minWidth: 200, flexGrow: 1 }}>
+              {/* Category and Marital Status */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
+                <FormControl fullWidth>
                   <InputLabel>Category (वर्ग) *</InputLabel>
                   <Select
                     name="category"
@@ -272,13 +307,14 @@ const Job = () => {
                   </Select>
                 </FormControl>
 
-                <FormControl component="fieldset" sx={{ minWidth: 200, flexGrow: 1 }}>
+                <FormControl fullWidth>
                   <Typography variant="subtitle2">Marital Status (वैवाहिक स्थिति) *</Typography>
                   <RadioGroup
                     row
                     name="maritalStatus"
                     value={formData.maritalStatus}
                     onChange={handleChange}
+                    sx={{ justifyContent: 'space-between' }}
                   >
                     <FormControlLabel value="Married" control={<Radio />} label="Married" />
                     <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
@@ -288,7 +324,8 @@ const Job = () => {
                 </FormControl>
               </Box>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+              {/* Age and Religion */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
                 <TextField
                   fullWidth
                   label="Age (आयु)"
@@ -297,10 +334,9 @@ const Job = () => {
                   value={formData.age}
                   onChange={handleChange}
                   required
-                  sx={{ minWidth: 200, flexGrow: 1 }}
                 />
 
-                <FormControl fullWidth sx={{ minWidth: 200, flexGrow: 1 }}>
+                <FormControl fullWidth>
                   <InputLabel>Religion (धर्म) *</InputLabel>
                   <Select
                     name="religion"
@@ -316,27 +352,30 @@ const Job = () => {
                 </FormControl>
               </Box>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                <FormControl component="fieldset" sx={{ minWidth: 200, flexGrow: 1 }}>
+              {/* Gender and Passport */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
+                <FormControl fullWidth>
                   <Typography variant="subtitle2">Gender (लिंग) *</Typography>
                   <RadioGroup
                     row
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
+                    sx={{ justifyContent: 'space-between' }}
                   >
                     <FormControlLabel value="Female" control={<Radio />} label="Female" />
                     <FormControlLabel value="Male" control={<Radio />} label="Male" />
                   </RadioGroup>
                 </FormControl>
 
-                <FormControl component="fieldset" sx={{ minWidth: 200, flexGrow: 1 }}>
+                <FormControl fullWidth>
                   <Typography variant="subtitle2">Passport (पासपोर्ट) *</Typography>
                   <RadioGroup
                     row
                     name="passport"
                     value={formData.passport}
                     onChange={handleChange}
+                    sx={{ justifyContent: 'space-between' }}
                   >
                     <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
                     <FormControlLabel value="No" control={<Radio />} label="No" />
@@ -344,8 +383,9 @@ const Job = () => {
                 </FormControl>
               </Box>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                <FormControl fullWidth sx={{ minWidth: 200, flexGrow: 1 }}>
+              {/* Education and Working Hours */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
+                <FormControl fullWidth>
                   <InputLabel>Education (शिक्षा) *</InputLabel>
                   <Select
                     name="education"
@@ -360,7 +400,7 @@ const Job = () => {
                   </Select>
                 </FormControl>
 
-                <FormControl fullWidth sx={{ minWidth: 200, flexGrow: 1 }}>
+                <FormControl fullWidth>
                   <InputLabel>Working Hours (काम करने के घंटे) *</InputLabel>
                   <Select
                     name="workingHours"
@@ -376,6 +416,7 @@ const Job = () => {
                 </FormControl>
               </Box>
 
+              {/* Address */}
               <TextField
                 fullWidth
                 label="Home Address (घर का पता)"
@@ -383,20 +424,21 @@ const Job = () => {
                 value={formData.address}
                 onChange={handleChange}
                 multiline
+                rows={2}
                 required
               />
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+              {/* Work Location and Expected Salary */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
                 <TextField
                   fullWidth
                   label="Work Location (काम कहा पे करना चाहते हो ?)"
                   name="workLocation"
                   value={formData.workLocation}
                   onChange={handleChange}
-                  sx={{ minWidth: 200, flexGrow: 1 }}
                 />
 
-                <FormControl fullWidth sx={{ minWidth: 200, flexGrow: 1 }}>
+                <FormControl fullWidth>
                   <InputLabel>Expected Salary (अपेक्षित वेतन)</InputLabel>
                   <Select
                     name="expectedSalary"
@@ -411,8 +453,9 @@ const Job = () => {
                 </FormControl>
               </Box>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                <FormControl fullWidth sx={{ minWidth: 200, flexGrow: 1 }}>
+              {/* Experience and Aadhar Card */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
+                <FormControl fullWidth>
                   <InputLabel>Total Experience (कुल अनुभव) *</InputLabel>
                   <Select
                     name="experience"
@@ -427,7 +470,7 @@ const Job = () => {
                   </Select>
                 </FormControl>
 
-                <Box sx={{ minWidth: 200, flexGrow: 1 }}>
+                <Box sx={{ width: '100%' }}>
                   <Typography variant="subtitle2" gutterBottom>
                     Upload Aadhar Card (आधार कार्ड अपलोड करें) *
                   </Typography>
@@ -437,12 +480,14 @@ const Job = () => {
                     onChange={handleFileChange}
                     accept="image/*,.pdf"
                     required
+                    style={{ width: '100%' }}
                   />
                 </Box>
               </Box>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                <Box sx={{ minWidth: 200, flexGrow: 1 }}>
+              {/* Image Upload and Languages */}
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3 }}>
+                <Box sx={{ width: '100%' }}>
                   <Typography variant="subtitle2" gutterBottom>
                     Upload Image (तस्वीर डालिये) *
                   </Typography>
@@ -452,10 +497,11 @@ const Job = () => {
                     onChange={handleFileChange}
                     accept="image/*"
                     required
+                    style={{ width: '100%' }}
                   />
                 </Box>
 
-                <FormControl component="fieldset" sx={{ minWidth: 200, flexGrow: 1 }}>
+                <FormControl component="fieldset" sx={{ width: '100%' }}>
                   <Typography variant="subtitle2">
                     Which languages do you know? (तुम कौन सी भाषा जानते हो?)
                   </Typography>
@@ -478,16 +524,22 @@ const Job = () => {
                 </FormControl>
               </Box>
 
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+              <DialogActions sx={{ justifyContent: 'center', padding: '16px 24px' }}>
                 <Button
                   type="submit"
                   variant="contained"
                   color="primary"
                   size="large"
+                  disabled={isSubmitting}
+                  sx={{
+                    minWidth: '200px',
+                    padding: '10px 24px',
+                    width: { xs: '100%', sm: 'auto' }
+                  }}
                 >
-                  Submit
+                  {isSubmitting ? 'Submitting...' : 'Submit'}
                 </Button>
-              </Box>
+              </DialogActions>
             </Box>
           </form>
         </DialogContent>
