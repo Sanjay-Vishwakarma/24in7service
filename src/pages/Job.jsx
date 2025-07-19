@@ -163,7 +163,9 @@ const Job = ({ hideButton = false, onClose, open: propOpen }) => {
         image: null
       });
 
-      handleClose();
+      setTimeout(() => {
+        handleClose();
+      }, 1000);
     } catch (error) {
       console.error('Error submitting form:', error);
       showToast(
