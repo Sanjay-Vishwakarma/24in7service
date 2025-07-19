@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import jobImg from "../assets/images/job.png";
 import mgHome from "../assets/images/background.jpg";
 import marketImg from "../assets/images/market.png";
-import wrhImg from "../assets/images/we-are-hiring.png";
 import ContactUs from "./ContactUs";
 import Job from "./Job";
 import "./Home.css";
-import { Helmet } from "react-helmet"; // ✅ Added for SEO
-
+import { Helmet } from "react-helmet";
 
 const cardData = [
   {
@@ -36,16 +34,19 @@ const cardData = [
 
 function Home() {
   const [openContactModal, setOpenContactModal] = useState(false);
+  const [openJobModal, setOpenJobModal] = useState(false);
 
   const handleOpenContactModal = () => setOpenContactModal(true);
   const handleCloseContactModal = () => setOpenContactModal(false);
-  const [openJobModal, setOpenJobModal] = useState(false);
+  const handleOpenJobModal = () => setOpenJobModal(true);
+  const handleCloseJobModal = () => setOpenJobModal(false);
 
   return (
-
     <>
       <Helmet>
-        <title>24inMaidService - Find Jobs & Hire Domestic Helpers in Mumbai-PAN INDIA</title>
+        <title>
+          24inMaidService - Find Jobs & Hire Domestic Helpers in Mumbai-PAN INDIA
+        </title>
         <meta
           name="description"
           content="Discover the best maid services and job opportunities in Mumbai. Hire trusted domestic helpers or apply for jobs quickly with 24inMaidService."
@@ -55,39 +56,40 @@ function Home() {
           content="maid service Mumbai, housemaid jobs, hire maids online, Mumbai domestic help, part-time maid Mumbai"
         />
         <link rel="canonical" href="https://www.24inmaidservice.in/" />
-
-        {/* Open Graph Tags for Social Media Sharing */}
-        <meta property="og:title" content="24inMaidService - Hire or Find Jobs Easily" />
+        <meta
+          property="og:title"
+          content="24inMaidService - Hire or Find Jobs Easily"
+        />
         <meta
           property="og:description"
           content="Whether you need a job or want to hire a maid in Mumbai, 24inMaidService is the platform for you. Apply or post today."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.24inmaidservice.in/" />
-        <meta property="og:image" content="https://www.24inmaidservice.in/cover-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://www.24inmaidservice.in/cover-image.jpg"
+        />
       </Helmet>
 
       <div className="home-container">
-        {/* Contact Modal */}
+        {/* Contact Modal - Custom implementation */}
         {openContactModal && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button className="modal-close-btn" onClick={handleCloseContactModal}>&times;</button>
-              <ContactUs onClose={handleCloseContactModal} />
+          <div className="modal-overlay" onClick={handleCloseContactModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <ContactUs onClose={handleCloseContactModal} isModal={true} />
             </div>
           </div>
         )}
 
-        {openJobModal && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button className="modal-close-btn" onClick={() => setOpenJobModal(false)}>&times;</button>
-              <Job onClose={() => setOpenJobModal(false)} />
-            </div>
-          </div>
-        )}
+        {/* Job Modal - Using Material-UI Dialog directly */}
+        <Job
+          hideButton={true}
+          open={openJobModal}
+          onClose={handleCloseJobModal}
+        />
 
-        {/* Banner Image */}
+        {/* Banner */}
         <div className="banner-container">
           <img
             src={mgHome}
@@ -96,15 +98,13 @@ function Home() {
           />
         </div>
 
-        {/* Main Content */}
+        {/* Main Section */}
         <div className="container main-content">
-          {/* Heading */}
           <div className="text-center mb-5">
             <h5 className="text-primary">24IN MAID SERVICE</h5>
             <h1 className="main-heading">A Perfect Solution</h1>
           </div>
 
-          {/* Cards Grid - Centered layout */}
           <div className="row justify-content-center custom-card-container">
             {cardData.map((item) => (
               <div key={item.id} className="col-12 col-md-6 col-lg-4 mb-4">
@@ -125,7 +125,7 @@ function Home() {
                           item.isContactUs
                             ? handleOpenContactModal
                             : item.isJob
-                              ? () => setOpenJobModal(true)
+                              ? handleOpenJobModal
                               : undefined
                         }
                       >

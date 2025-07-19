@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import "./ContactUs.css";
 import axiosInstance from "./../config/axiosInstance";
 import { API_ENDPOINTS } from './../config/apiEndpoints';
 import { showToast, ToastNotification } from "./../utils/ToastNotification";
+import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
+import './ContactUs.css';
 
-function ContactUs() {
+function ContactUs({ onClose, isModal = false }) {
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -31,6 +33,7 @@ function ContactUs() {
           email: "",
           description: "",
         });
+        if (onClose) onClose();
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -44,15 +47,14 @@ function ContactUs() {
   };
 
   const addressList = [
-  
     {
       city: "Mumbai(Pan India)",
-      address:"Shivaji Chowk, Anand Nagar Appapada, Kurar Village, Malad(East) Mumbai – 400097",
-      phones: ["9082295602","9594013627"],
+      address: "Shivaji Chowk, Anand Nagar Appapada, Kurar Village, Malad(East) Mumbai – 400097",
+      phones: ["9082295602", "9594013627"],
     },
     {
       city: "Delhi",
-      address:"H2, Rishal Garden Near Nangloi Railway Station New Delhi – 110041",
+      address: "H2, Rishal Garden Near Nangloi Railway Station New Delhi – 110041",
       phones: ["9082295602"],
     },
   ];
@@ -60,13 +62,34 @@ function ContactUs() {
   return (
     <div className="contact-container">
       <ToastNotification />
+      {isModal && (
+        <IconButton
+          className="modal-close-btn"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: '16px',
+            top: '16px',
+            zIndex: 1,
+            color: '#6a0dad',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            '&:hover': {
+              backgroundColor: '#6a0dad',
+              color: 'white'
+            }
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      )}
+
       <div className="contact-header">
         <h1>Get In Touch</h1>
         <p>We'd love to hear from you! Send us a message below.</p>
       </div>
 
       <div className="contact-content">
-        {/* Contact Form First */}
+        {/* Contact Form */}
         <div className="contact-form-container">
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -142,7 +165,7 @@ function ContactUs() {
           </form>
         </div>
 
-        {/* Address Section After */}
+        {/* Address Section */}
         <div className="contact-info">
           <div className="info-card">
             <h2>

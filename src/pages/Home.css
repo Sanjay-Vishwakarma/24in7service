@@ -100,7 +100,7 @@
   box-shadow: 0 4px 12px rgba(123, 44, 191, 0.3);
 }
 
-/* Modal Styles */
+/* Modal Styles - Only for ContactUs (since Job uses MUI Dialog) */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -111,7 +111,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1300; /* Same as MUI Dialog */
   backdrop-filter: blur(5px);
 }
 
@@ -163,6 +163,11 @@
   }
 }
 
+/* Ensure MUI dialogs appear above everything */
+.MuiDialog-container {
+  z-index: 1300 !important;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .card-title {
@@ -212,5 +217,81 @@
   .custom-card-container > div {
     flex: 0 0 calc(50% - 1rem);
     max-width: calc(50% - 1rem);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #6a0dad;
+  z-index: 10;
+}
+
+/* Adjust ContactUs component for modal */
+.modal-content .contact-container {
+  padding: 2rem;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .modal-content .contact-content {
+    flex-direction: column;
+  }
+  
+  .modal-content .contact-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content .contact-container {
+    padding: 1rem;
+  }
+  
+  .modal-content .form-row {
+    flex-direction: column;
   }
 }
