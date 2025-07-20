@@ -136,22 +136,21 @@ function InquiryModal({ onClose }) {
 
                 <form onSubmit={handleSubmit} className="modal-form">
                     <div className="form-group">
-                        <label htmlFor="name">Name <RequiredAsterisk /></label>
                         <input
                             className={`form-input ${errors.name ? 'input-error' : ''}`}
                             type="text"
                             name="name"
                             id="name"
-                            placeholder="Enter Name"
+                            placeholder="Enter Name *"
                             value={formData.name}
                             onChange={handleChange}
                             disabled={isSubmitting}
+                            aria-label="Name"
                         />
                         {errors.name && <span className="error-message">{errors.name}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="location">Location <RequiredAsterisk /></label>
                         <select
                             className={`form-input ${errors.location ? 'input-error' : ''}`}
                             name="location"
@@ -159,8 +158,9 @@ function InquiryModal({ onClose }) {
                             value={formData.location}
                             onChange={handleChange}
                             disabled={isSubmitting}
+                            aria-label="Location"
                         >
-                            <option value="" disabled>Select Location</option>
+                            <option value="" disabled>Select Location *</option>
                             {locationOptions.map((loc, index) => (
                                 <option key={index} value={loc}>{loc}</option>
                             ))}
@@ -169,7 +169,6 @@ function InquiryModal({ onClose }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="workHours">Working Hours <RequiredAsterisk /></label>
                         <select
                             className={`form-input ${errors.workHours ? 'input-error' : ''}`}
                             name="workHours"
@@ -177,8 +176,9 @@ function InquiryModal({ onClose }) {
                             value={formData.workHours}
                             onChange={handleChange}
                             disabled={isSubmitting}
+                            aria-label="Working Hours"
                         >
-                            <option value="" disabled>Select Working Hours</option>
+                            <option value="" disabled>Select Working Hours *</option>
                             {workingHours.map((hour, index) => (
                                 <option key={index} value={hour.value}>{hour.label}</option>
                             ))}
@@ -187,7 +187,6 @@ function InquiryModal({ onClose }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="maidServiceType">Service <RequiredAsterisk /></label>
                         <select
                             className={`form-input ${errors.maidServiceType ? 'input-error' : ''}`}
                             name="maidServiceType"
@@ -195,8 +194,9 @@ function InquiryModal({ onClose }) {
                             value={formData.maidServiceType}
                             onChange={handleChange}
                             disabled={isSubmitting}
+                            aria-label="Service Type"
                         >
-                            <option value="" disabled>Select Service</option>
+                            <option value="" disabled>Select Service *</option>
                             {serviceOptions.map((service, index) => (
                                 <option key={index} value={service}>{service}</option>
                             ))}
@@ -205,39 +205,38 @@ function InquiryModal({ onClose }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email">Email <RequiredAsterisk /></label>
                         <input
                             className={`form-input ${errors.email ? 'input-error' : ''}`}
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Enter Email"
+                            placeholder="Enter Email *"
                             value={formData.email}
                             onChange={handleChange}
                             disabled={isSubmitting}
+                            aria-label="Email"
                         />
                         {errors.email && <span className="error-message">{errors.email}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="phone">Mobile Number <RequiredAsterisk /></label>
                         <input
                             className={`form-input ${errors.phone ? 'input-error' : ''}`}
                             type="tel"
                             name="phone"
                             id="phone"
-                            placeholder="Enter Mobile Number"
+                            placeholder="Enter Mobile Number *"
                             value={formData.phone}
                             onChange={handleChange}
                             pattern="[0-9]{10}"
                             maxLength={10}
                             disabled={isSubmitting}
+                            aria-label="Phone"
                         />
                         {errors.phone && <span className="error-message">{errors.phone}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="description">Additional Message</label>
                         <textarea
                             className="form-input"
                             name="description"
@@ -247,6 +246,7 @@ function InquiryModal({ onClose }) {
                             onChange={handleChange}
                             rows="3"
                             disabled={isSubmitting}
+                            aria-label="Description"
                         />
                     </div>
 

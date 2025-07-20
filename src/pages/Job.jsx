@@ -165,7 +165,7 @@ const Job = ({ hideButton = false, onClose, open: propOpen }) => {
 
       setTimeout(() => {
         handleClose();
-      }, 1000);
+      }, 1500);
     } catch (error) {
       console.error('Error submitting form:', error);
       showToast(
