@@ -256,15 +256,15 @@ const Job = ({ hideButton = false, onClose, open: propOpen }) => {
             <Divider sx={{ my: 1 }} />
             <Typography variant="body2">
               Our company does not charge any fee from any candidate. If anyone is
-              asking for money in the name of bookyourmaid, please WhatsApp us on
-              this number 9819122200 and do not make any payment. If you make any
+              asking for money in the name of "24in maid service", please WhatsApp us on
+              this number 9082295602 and do not make any payment. If you make any
               payment, you are responsible for it.
             </Typography>
             <Divider sx={{ my: 1 }} />
             <Typography variant="body2">
               हमारी कंपनी किसी भी उम्मीदवार से कोई फीस नहीं लेती है। अगर कोई भी
-              bookyourmaid के नाम पर पैसे मांग रहा है तो कृपया हमें इस नंबर
-              9819122200 पर व्हाट्सएप करें और कोई भी भुगतान न करें। अगर आप कोई भी
+              "24in maid service" के नाम पर पैसे मांग रहा है तो कृपया हमें इस नंबर
+              9082295602 पर व्हाट्सएप करें और कोई भी भुगतान न करें। अगर आप कोई भी
               भुगतान करते हैं, तो उसके लिए आप स्वयं जिम्मेदार होंगे।
             </Typography>
           </Box>
