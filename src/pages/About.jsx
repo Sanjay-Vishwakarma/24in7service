@@ -12,21 +12,21 @@ const sections = [
     image: flag,
   },
   {
-    title: "Need for 24IN MS",
+    title: "Need for 24IN MAID SERVICE",
     content: [
       {
         detail:
-          `In today's fast-paced world, finding reliable domestic help or securing a fulfilling domestic job can be a daunting task. This is where "24IN Maid Service" (24IN MS) steps in, revolutionizing the way job seekers and employers connect in the domestic job market.`,
+          `In today's fast-paced world, finding reliable domestic help or securing a fulfilling domestic job can be a daunting task. This is where "24IN MAID SERVICE" steps in, revolutionizing the way job seekers and employers connect in the domestic job market.`,
       },
     ],
   },
   {
-    title: "Why 24IN MS is Essential",
+    title: "Why 24IN MAID SERVICE is Essential",
     content: [
       {
         title: "Trust and Reliability",
         detail:
-          "24IN MS verifies both job listings and job seekers for a safe experience.",
+          "24IN MAID SERVICE verifies both job listings and job seekers for a safe experience.",
       },
       {
         title: "Time and Effort Saving",
@@ -50,7 +50,7 @@ const sections = [
       {
         title: "Access to Verified Opportunities",
         detail:
-          "24IN MS ensures that all job listings are verified, providing job seekers.",
+          "24IN MAID SERVICE ensures that all job listings are verified, providing job seekers.",
       },
       {
         title: "Effortless Application Process",
@@ -149,7 +149,7 @@ function About() {
         </div>
       </div>
 
-      {/* Second Row - Need for 24IN MS */}
+      {/* Second Row - Need for 24IN MAID SERVICE */}
       <div className="row">
         <div className="col-12 mb-4">
           <div className="utf-sidebar-widget-item card-shadow">
@@ -165,7 +165,7 @@ function About() {
         </div>
       </div>
 
-      {/* Second Row - Three Cards (Job Seekers, Employers, Why 24IN MS) */}
+      {/* Second Row - Three Cards (Job Seekers, Employers, Why 24IN MAID SERVICE) */}
       <div className="row">
         {sections.slice(2).map((section, index) => (
           <div className="col-md-4" key={index}>
