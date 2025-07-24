@@ -8,7 +8,7 @@ function Pricing() {
 
         <PricingCard/>
         <div className="utf-section-headline-item centered margin-bottom-30">
-          <h3>Pay For What You Use</h3>
+          <h3 style={{ marginTop: '7%' }}>Pay For What You Use</h3> 
           <p className="utf-slogan-text">
             Our customised price options enables you to go as per your needs and
             requirements. Our pricing and related services are most economical
@@ -18,9 +18,9 @@ function Pricing() {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row mt-4 mb-1">
         <div className="utf-sidebar-widget-item">
-          <h3>Pricing process by MAID SERVICE</h3>
+          <h3 >Pricing process by MAID SERVICE</h3> 
           <ul className="utf-job-deatails-content-item">
             <li>
               <i className="icon-feather-arrow-right" />

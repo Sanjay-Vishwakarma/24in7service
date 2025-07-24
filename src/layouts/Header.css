@@ -1,51 +1,139 @@
-/* Desktop navigation (light mode) */
+/* Desktop navigation */
 .nav-link {
   padding: 8px 12px;
   color: #3b4252;
   font-weight: 500;
   text-decoration: none;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  position: relative;
 }
 
 .nav-link:hover {
-  color: purple;
+  color: #7b2cbf;
 }
 
 .nav-link.active {
-  color: purple;
-  border-bottom: 2px solid purple;
+  color: #7b2cbf;
+  font-weight: 600;
 }
 
-/* Mobile drawer nav (dark mode only) */
+.nav-hover-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #7b2cbf;
+  border-radius: 2px;
+}
+
+/* Mobile drawer nav */
 .drawer-link {
   text-decoration: none;
 }
 
 .drawer-link.active .MuiListItem-root {
-  background-color: #3700b3 !important;
-  font-weight: bold;
+  background-color: rgba(187, 134, 252, 0.2) !important;
 }
 
 .drawer-link.active .MuiListItemText-primary {
-  color: #ffffff !important;
+  color: #bb86fc !important;
+  font-weight: 600 !important;
 }
 
-/* Toolbar adjustments */
+/* AppBar styles */
+.MuiAppBar-root {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .MuiToolbar-root {
-  min-height: 64px;
-  padding-left: 16px !important;
-  padding-right: 16px !important;
+  min-height: 70px;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
 }
 
-/* Mobile responsiveness */
+/* Logo image */
+.logo-img {
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+/* Hamburger menu animation */
+.hamburger {
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .MuiToolbar-root {
+    min-height: 64px;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+}
+
 @media (max-width: 600px) {
   .MuiToolbar-root {
-    min-height: 56px;
+    min-height: 60px;
   }
   
   .MuiDrawer-paper {
     width: 280px !important;
   }
+  
+  .logo-img {
+    width: 50px;
+    height: 40px;
+  }
+}
+
+/* Animation for nav items */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-item {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Pulse animation for active item */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.active-pulse {
+  animation: pulse 2s infinite;
 }

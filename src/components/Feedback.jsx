@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Feedback.css';
 import axiosInstance from "./../config/axiosInstance";
 import { API_ENDPOINTS } from './../config/apiEndpoints';
-import { showToast, ToastNotification } from './../utils/ToastNotification';
+import { showToast } from './../utils/ToastNotification';
 
 function Feedback() {
     const [feedback, setFeedback] = useState({
@@ -14,6 +14,7 @@ function Feedback() {
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [hoverRating, setHoverRating] = useState(0);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,7 +22,6 @@ function Feedback() {
             ...prev,
             [name]: value
         }));
-        // Clear error when user types
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }));
         }
@@ -59,7 +59,7 @@ function Feedback() {
             const payload = {
                 name: feedback.name,
                 email: feedback.email,
-                rating: feedback.rating.toString(), // Convert to string if your API expects it
+                rating: feedback.rating.toString(),
                 feedbackMessage: feedback.feedbackMessage
             };
 
@@ -87,81 +87,102 @@ function Feedback() {
 
     return (
         <div className="feedback-container">
-            <ToastNotification />
-            <h2 className="feedback-title">Share Your Feedback</h2>
-            <p className="feedback-subtitle">We'd love to hear about your experience</p>
-
-            <form onSubmit={handleSubmit} className="feedback-form">
-                <div className="form-group">
-                    <label htmlFor="name">Your Name <span className="required">*</span></label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={feedback.name}
-                        onChange={handleChange}
-                        className={errors.name ? 'input-error' : ''}
-                        placeholder="Enter your name"
-                        disabled={isSubmitting}
-                    />
-                    {errors.name && <span className="error-message">{errors.name}</span>}
+            <div className="feedback-card">
+                <div className="feedback-header">
+                    <h2 className="feedback-title">Share Your Feedback</h2>
+                    <p className="feedback-subtitle">We value your opinion and would love to hear about your experience</p>
+                    <div className="divider"></div>
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="email">Email <span className="required">*</span></label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={feedback.email}
-                        onChange={handleChange}
-                        className={errors.email ? 'input-error' : ''}
-                        placeholder="Enter your email"
-                        disabled={isSubmitting}
-                    />
-                    {errors.email && <span className="error-message">{errors.email}</span>}
-                </div>
-
-                <div className="form-group">
-                    <label>Your Rating <span className="required">*</span></label>
-                    <div className="rating-container">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                            <span
-                                key={star}
-                                className={`rating-star ${star <= feedback.rating ? 'active' : ''}`}
-                                onClick={() => !isSubmitting && handleRatingChange(star)}
-                                style={{ cursor: isSubmitting ? 'not-allowed' : 'pointer' }}
-                            >
-                                ★
-                            </span>
-                        ))}
+                <form onSubmit={handleSubmit} className="feedback-form">
+                    <div className="form-group" style={{ animationDelay: '0.1s' }}>
+                        <div className="input-container">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={feedback.name}
+                                onChange={handleChange}
+                                className={errors.name ? 'input-error' : ''}
+                                placeholder=" "
+                                disabled={isSubmitting}
+                            />
+                            <label htmlFor="name">Your Name <span className="required">*</span></label>
+                        </div>
+                        {errors.name && <span className="error-message">{errors.name}</span>}
                     </div>
-                    {errors.rating && <span className="error-message">{errors.rating}</span>}
-                </div>
 
-                <div className="form-group">
-                    <label htmlFor="feedbackMessage">Your Feedback <span className="required">*</span></label>
-                    <textarea
-                        id="feedbackMessage"
-                        name="feedbackMessage"
-                        value={feedback.feedbackMessage}
-                        onChange={handleChange}
-                        className={errors.feedbackMessage ? 'input-error' : ''}
-                        placeholder="Share your thoughts..."
-                        rows="5"
+                    <div className="form-group" style={{ animationDelay: '0.2s' }}>
+                        <div className="input-container">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={feedback.email}
+                                onChange={handleChange}
+                                className={errors.email ? 'input-error' : ''}
+                                placeholder=" "
+                                disabled={isSubmitting}
+                            />
+                            <label htmlFor="email">Email Address <span className="required">*</span></label>
+                        </div>
+                        {errors.email && <span className="error-message">{errors.email}</span>}
+                    </div>
+
+                    <div className="form-group" style={{ animationDelay: '0.3s' }}>
+                        <label>Your Rating <span className="required">*</span></label>
+                        <div className="rating-container">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <button
+                                    type="button"
+                                    key={star}
+                                    className={`rating-star ${star <= (hoverRating || feedback.rating) ? 'active' : ''}`}
+                                    onClick={() => !isSubmitting && handleRatingChange(star)}
+                                    onMouseEnter={() => !isSubmitting && setHoverRating(star)}
+                                    onMouseLeave={() => !isSubmitting && setHoverRating(0)}
+                                    disabled={isSubmitting}
+                                >
+                                    <svg viewBox="0 0 24 24" width="28" height="28">
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                    </svg>
+                                </button>
+                            ))}
+                        </div>
+                        {errors.rating && <span className="error-message">{errors.rating}</span>}
+                    </div>
+
+                    <div className="form-group" style={{ animationDelay: '0.4s' }}>
+                        <div className="input-container">
+                            <textarea
+                                id="feedbackMessage"
+                                name="feedbackMessage"
+                                value={feedback.feedbackMessage}
+                                onChange={handleChange}
+                                className={errors.feedbackMessage ? 'input-error' : ''}
+                                placeholder=" "
+                                rows="4"
+                                disabled={isSubmitting}
+                            />
+                            <label htmlFor="feedbackMessage">Your Feedback <span className="required">*</span></label>
+                        </div>
+                        {errors.feedbackMessage && <span className="error-message">{errors.feedbackMessage}</span>}
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="submit-button"
                         disabled={isSubmitting}
-                    />
-                    {errors.feedbackMessage && <span className="error-message">{errors.feedbackMessage}</span>}
-                </div>
-
-                <button
-                    type="submit"
-                    className="submit-button"
-                    disabled={isSubmitting}
-                >
-                    {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
-                </button>
-            </form>
+                        style={{ animationDelay: '0.5s' }}
+                    >
+                        {isSubmitting ? (
+                            <>
+                                <span className="spinner"></span>
+                                Submitting...
+                            </>
+                        ) : 'Submit Feedback'}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

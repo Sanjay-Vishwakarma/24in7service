@@ -1,0 +1,14 @@
+.service-card .card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card .card-text {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .service-card {
+    min-height: 280px;
+  }
+}

@@ -18,7 +18,10 @@ const Footer = () => {
                             </h4>
                         </div>
                         <p className="small text-muted mb-4">
-                            "24in Maid Service" connects skilled house helps and maids with clients in need of their services. Our platform offers a seamless experience.
+                            "24in maid service" connects skilled house helps and maids with clients in need of their services. Our platform offers a seamless experience.
+                            We specialize in providing reliable and professional <span style={{ color: '#007bff', fontWeight: 'bold' }}>
+                                Housemaids, Cooks, Patient Caretakers, Japa Maid, Nanny, Drivers, Nurses, Baby Sitters, Elderly Care Services
+                            </span>. Our expert team ensures reliable, caring support to homes across Mumbai.
                         </p>
                         <div className="social-icons d-flex">
                             <a href="#" className="social-icon"><FaInstagram /></a>
@@ -61,7 +64,6 @@ const Footer = () => {
                                         'Newborn Care',
                                         'Elder Care',
                                         'Patient Care',
-                                        'Drivers',
                                     ].map((job, i) => (
                                         <li key={i} className="mb-2">
                                             <a href="#" className="footer-link">
