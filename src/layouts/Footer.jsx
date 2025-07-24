@@ -64,7 +64,6 @@ const Footer = () => {
                                         'Newborn Care',
                                         'Elder Care',
                                         'Patient Care',
-                                        'Drivers',
                                     ].map((job, i) => (
                                         <li key={i} className="mb-2">
                                             <a href="#" className="footer-link">

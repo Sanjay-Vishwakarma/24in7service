@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from './../config/apiEndpoints';
 import { showToast, ToastNotification } from "./../utils/ToastNotification";
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
+import { motion, AnimatePresence } from "framer-motion";
 import './ContactUs.css';
 
 function ContactUs({ onClose, isModal = false }) {
@@ -36,7 +37,7 @@ function ContactUs({ onClose, isModal = false }) {
       
         setTimeout(() => {
           if (onClose) onClose();
-        }, 1000); // Wait 1 second to allow toast to display
+        }, 1000);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -63,7 +64,13 @@ function ContactUs({ onClose, isModal = false }) {
   ];
 
   return (
-    <div className="contact-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="contact-container mb-2 mt-2"
+    >
       <ToastNotification />
       {isModal && (
         <IconButton
@@ -81,25 +88,43 @@ function ContactUs({ onClose, isModal = false }) {
               color: 'white'
             }
           }}
+          component={motion.div}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
           <CloseIcon />
         </IconButton>
       )}
 
-      <div className="contact-header">
+      <motion.div 
+        className="contact-header"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
         <h1>Get In Touch</h1>
         <p>We'd love to hear from you! Send us a message below.</p>
-      </div>
+      </motion.div>
 
       <div className="contact-content">
         {/* Contact Form */}
-        <div className="contact-form-container">
+        <motion.div 
+          className="contact-form-container"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
+            <motion.div 
+              className="form-group"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
               <label htmlFor="fullName">
                 Full Name <span className="required">*</span>
               </label>
-              <input
+              <motion.input
                 type="text"
                 id="fullName"
                 name="fullName"
@@ -107,15 +132,24 @@ function ContactUs({ onClose, isModal = false }) {
                 required
                 value={formData.fullName}
                 onChange={handleChange}
+                whileFocus={{ 
+                  boxShadow: "0 0 0 2px rgba(106, 13, 173, 0.5)",
+                  borderColor: "#6a0dad"
+                }}
               />
-            </div>
+            </motion.div>
 
-            <div className="form-row">
+            <motion.div 
+              className="form-row"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
               <div className="form-group">
                 <label htmlFor="phoneNumber">
                   Mobile Number <span className="required">*</span>
                 </label>
-                <input
+                <motion.input
                   type="tel"
                   id="phoneNumber"
                   name="phoneNumber"
@@ -124,6 +158,10 @@ function ContactUs({ onClose, isModal = false }) {
                   required
                   value={formData.phoneNumber}
                   onChange={handleChange}
+                  whileFocus={{ 
+                    boxShadow: "0 0 0 2px rgba(106, 13, 173, 0.5)",
+                    borderColor: "#6a0dad"
+                  }}
                 />
               </div>
 
@@ -131,7 +169,7 @@ function ContactUs({ onClose, isModal = false }) {
                 <label htmlFor="email">
                   Email <span className="required">*</span>
                 </label>
-                <input
+                <motion.input
                   type="email"
                   id="email"
                   name="email"
@@ -139,15 +177,24 @@ function ContactUs({ onClose, isModal = false }) {
                   required
                   value={formData.email}
                   onChange={handleChange}
+                  whileFocus={{ 
+                    boxShadow: "0 0 0 2px rgba(106, 13, 173, 0.5)",
+                    borderColor: "#6a0dad"
+                  }}
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="form-group">
+            <motion.div 
+              className="form-group"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
               <label htmlFor="description">
                 Your Message <span className="required">*</span>
               </label>
-              <textarea
+              <motion.textarea
                 id="description"
                 name="description"
                 rows="5"
@@ -155,56 +202,106 @@ function ContactUs({ onClose, isModal = false }) {
                 required
                 value={formData.description}
                 onChange={handleChange}
-              ></textarea>
-            </div>
+                whileFocus={{ 
+                  boxShadow: "0 0 0 2px rgba(106, 13, 173, 0.5)",
+                  borderColor: "#6a0dad"
+                }}
+              ></motion.textarea>
+            </motion.div>
 
-            <button
+            <motion.button
               type="submit"
               className="submit-btn"
               disabled={isSubmitting}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
+              {isSubmitting ? (
+                <motion.span
+                  animate={{ 
+                    rotate: 360,
+                    transition: { 
+                      duration: 1, 
+                      repeat: Infinity,
+                      ease: "linear"
+                    } 
+                  }}
+                >
+                  <i className="fas fa-spinner"></i>
+                </motion.span>
+              ) : (
+                "Send Message"
+              )}
+            </motion.button>
           </form>
-        </div>
+        </motion.div>
 
         {/* Address Section */}
-        <div className="contact-info">
+        <motion.div 
+          className="contact-info"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
           <div className="info-card">
-            <h2>
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
               <i className="fas fa-map-marker-alt"></i> Our Offices
-            </h2>
+            </motion.h2>
 
-            <div className="contact-method">
+            <motion.div 
+              className="contact-method"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
                 <p>9082295602, 9594013627</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="contact-method">
+            <motion.div 
+              className="contact-method"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
               <i className="fas fa-envelope"></i>
               <div>
                 <h3>Email</h3>
                 <p>24inmaidservice@gmail.com</p>
               </div>
-            </div>
+            </motion.div>
 
             {addressList.map((loc, index) => (
-              <div key={index} className="address-card">
+              <motion.div 
+                key={index} 
+                className="address-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 + index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
                 <h3>{loc.city}</h3>
                 <p>{loc.address}</p>
                 <div className="contact-method">
                   <i className="fas fa-phone"></i>
                   <p>{loc.phones.join(", ")}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

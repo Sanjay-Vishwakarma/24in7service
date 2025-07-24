@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Required for styling
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/700.css";
+
 
 
 

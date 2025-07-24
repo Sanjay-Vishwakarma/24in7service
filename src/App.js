@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./layouts/Footer";
 import Header from "./layouts/Header";
 import Home from "./pages/Home";
@@ -13,37 +13,35 @@ import Job from "./pages/Job";
 import ContactUs from "./pages/ContactUs";
 import InquiryModal from "./pages/InquiryModal";
 import Feedback from "./components/Feedback";
-import {ToastNotification} from './utils/ToastNotification';
+import { ToastNotification } from "./utils/ToastNotification";
 import TermsAndCondition from "./pages/TermsAndCondition";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
-import ScrollToTop from './components/ScrollToTop';
-
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
+  const location = useLocation();
   const [showInquiryModal, setShowInquiryModal] = useState(false);
-  const contactData = {
-    phone: ["8855055049", "7987300916", "7084906501"],
-    email: ["contact@theworkinglady.in", "theworkinglady.in@gmail.com"],
-    address: [
-      "REGD: AS 25/ MAHALAXMI NAGAR, Sector A, Vijay Nagar, Indore, Madhya Pradesh 452010. Contact: 8855055049 / 7987300916 / 7084906501",
-      "Delhi: HOUSE NO. 15, RAILWAY ENCLAVE PHASE 2ND, Girdharpur Rd, near ANANT ENTERPRISES, Ghaziabad, UP 201009. Contact: 8855055049",
-      "Mumbai: 107 OMKAR CHS, Veera Desai Road, Andheri (W), Mumbai 400053, Maharashtra. Contact: 8855055049 / 7084906501",
-    ]
-  };
+
+    const modalRoutes = ["/pricing", "home","process ", "/feedback"]; // <--- Add this line
+
 
   useEffect(() => {
-    // Check if modal should be shown (once per session)
-    const shouldShowModal = sessionStorage.getItem('hasSeenModal') !== 'true';
+    const searchParams = new URLSearchParams(location.search);
+    const showByQuery = searchParams.get("inquire") === "true";
+    const shouldShowModal = sessionStorage.getItem("hasSeenModal") !== "true";
 
-    if (shouldShowModal) {
+    if (
+      (showByQuery || modalRoutes.includes(location.pathname)) &&
+      shouldShowModal
+    ) {
       const timer = setTimeout(() => {
         setShowInquiryModal(true);
-        sessionStorage.setItem('hasSeenModal', 'true');
-      }, 1000); // Show after 1 seconds
+        sessionStorage.setItem("hasSeenModal", "true");
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [location]);
 
   return (
     <>
@@ -54,7 +52,7 @@ function App() {
       )}
 
       <Header />
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -64,10 +62,10 @@ function App() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/jobs" element={<Job />} />
-        <Route path="/contactus" element={<ContactUs contactData={contactData} />} />
+        <Route path="/contactus" element={<ContactUs />} />
         <Route path="/feedback" element={<Feedback />} />
-        <Route path="/privacy-policy" element={< PrivacyAndPolicy />} />
-        <Route path="/terms-condition" element={< TermsAndCondition />} />
+        <Route path="/privacy-policy" element={<PrivacyAndPolicy />} />
+        <Route path="/terms-condition" element={<TermsAndCondition />} />
       </Routes>
       <Footer />
     </>

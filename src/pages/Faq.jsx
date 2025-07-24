@@ -6,8 +6,22 @@ import {
   AccordionSummary,
   AccordionDetails,
   Box,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { keyframes } from "@emotion/react";
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+`;
 
 const faqs = [
   {
@@ -26,7 +40,8 @@ const faqs = [
       "Clients can browse through available service providers on our platform, view profiles, and read reviews. They can directly contact the service provider, or you may receive a job offer based on your skills and availability.",
   },
   {
-    question: "What if I have a complaint or issue with a service provider or client?",
+    question:
+      "What if I have a complaint or issue with a service provider or client?",
     answer:
       "If you encounter any issues, please contact our support team. We will investigate the matter and help resolve any disputes between service providers and clients as quickly as possible.",
   },
@@ -43,25 +58,110 @@ const faqs = [
 ];
 
 function Faq() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
-      <Typography variant="h4" gutterBottom textAlign="center">
+    <Container
+      maxWidth="xl"
+      sx={{
+        mt: 8,
+        mb: 8,
+        animation: `${fadeIn} 0.6s ease-out`,
+      }}
+    >
+      <Typography
+        variant="h3"
+        gutterBottom
+        textAlign="center"
+        sx={{
+          fontWeight: 700,
+          color: theme.palette.primary.main,
+          mb: 6,
+          fontSize: isMobile ? "2rem" : "2.5rem",
+          "&:hover": {
+            animation: `${pulse} 1s ease infinite`,
+          },
+        }}
+      >
         Frequently Asked Questions
       </Typography>
-      <Box sx={{ px: { xs: 1, sm: 2, md: 6, lg: 12 } }}>
+
+      <Box
+        sx={{
+          px: { xs: 1, sm: 2, md: 6, lg: 12 },
+          "& > *": {
+            mb: 2,
+            animation: `${fadeIn} 0.5s ease-out forwards`,
+            opacity: 0,
+          },
+        }}
+      >
         {faqs.map((faq, index) => (
-          <Accordion key={index} sx={{ mb: 2 }}>
+          <Accordion
+            key={index}
+            sx={{
+              mb: 2,
+              borderRadius: "12px !important",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+              overflow: "hidden",
+              transition: "all 0.3s ease",
+              "&:before": {
+                display: "none",
+              },
+              "&:hover": {
+                boxShadow: "0 6px 24px rgba(0,0,0,0.12)",
+                transform: "translateY(-2px)",
+              },
+              animationDelay: `${index * 0.1}s`,
+            }}
+          >
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={
+                <ExpandMoreIcon
+                  sx={{
+                    color: theme.palette.primary.main,
+                    fontSize: "1.8rem",
+                  }}
+                />
+              }
               aria-controls={`faq-content-${index}`}
               id={`faq-header-${index}`}
+              sx={{
+                backgroundColor: theme.palette.grey[50],
+                "&:hover": {
+                  backgroundColor: theme.palette.grey[100],
+                },
+                "&.Mui-expanded": {
+                  backgroundColor: theme.palette.grey[100],
+                  borderBottom: `1px solid ${theme.palette.divider}`,
+                },
+              }}
             >
-              <Typography variant="subtitle1" fontWeight="bold">
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 600,
+                  color: theme.palette.text.primary,
+                  fontSize: isMobile ? "1rem" : "1.1rem",
+                }}
+              >
                 {faq.question}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <Typography variant="body1" color="text.secondary">
+            <AccordionDetails
+              sx={{
+                backgroundColor: theme.palette.background.paper,
+                padding: "24px",
+              }}
+            >
+              <Typography
+                variant="body1"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.7,
+                }}
+              >
                 {faq.answer}
               </Typography>
             </AccordionDetails>

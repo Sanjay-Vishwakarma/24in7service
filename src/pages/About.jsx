@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import flag from "../assets/images/flag.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./About.css";
 
-// Define dynamic data for each section
 const sections = [
   {
     title: "Our Vision",
     content: [
-      `To be India’s most reliable pan-India platform for connecting households with verified domestic maid bureaus—making it simple, secure, and convenient to find trusted domestic help anywhere in the country.`,
+      "To become India’s most trusted and accessible platform for connecting homes with reliable, trained, and background-verified domestic helpers — including maids, cooks, babysitters, drivers, and elder care providers.",
+      "We aim to simplify the hiring process by partnering with trusted maid bureaus and offering a seamless experience through digital convenience, transparency, and ongoing support.",
+      "By addressing the challenges of finding dependable domestic help across urban and semi-urban India, we envision building a nationwide ecosystem that empowers households and creates dignified job opportunities for domestic workers.",
     ],
     image: flag,
   },
@@ -15,8 +18,7 @@ const sections = [
     title: "Need for 24IN MAID SERVICE",
     content: [
       {
-        detail:
-          `In today's fast-paced world, finding reliable domestic help or securing a fulfilling domestic job can be a daunting task. This is where "24IN MAID SERVICE" steps in, revolutionizing the way job seekers and employers connect in the domestic job market.`,
+        detail: `In today's fast-paced world, finding reliable domestic help or securing a fulfilling domestic job can be a daunting task. This is where "24IN MAID SERVICE" steps in, revolutionizing the way job seekers and employers connect in the domestic job market.`,
       },
     ],
   },
@@ -62,7 +64,6 @@ const sections = [
         detail:
           "Choose from full-time, part-time, or freelance jobs to match your lifestyle.",
       },
-    
     ],
   },
   {
@@ -90,49 +91,18 @@ const sections = [
   },
 ];
 
-// Card Component for each section
-const SectionCard = ({ title, content, image }) => {
-  return (
-    <div className="col-md-6 col-lg-4 mb-4">
-      <div className="utf-sidebar-widget-item">
-        <div className="utf-section-headline-item centered margin-top-0 margin-bottom-20">
-          <h3>{title}</h3>
-        </div>
-        <div className="utf-card-content">
-          {image && (
-            <img src={image} className="img-fluid rounded-10" alt={title} />
-          )}
-          {/* Render content based on type */}
-          {Array.isArray(content) ? (
-            content.map((item, index) =>
-              typeof item === "string" ? (
-                <p key={index}>{item}</p>
-              ) : (
-                <ul key={index} className="list-2">
-                  <li>
-                    <strong>{item.title}:</strong> {item.detail}
-                  </li>
-                </ul>
-              )
-            )
-          ) : (
-            <p>{content}</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 function About() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="container">
-      <div className="row">
-        {/* First Row - Origin Story */}
+    <div className="container about-container">
+      {/* First Section */}
+      <div className="row align-items-center mb-5" data-aos="fade-up">
         <div className="col-lg-6">
           <div className="utf-section-headline-item centered margin-top-0 margin-bottom-40">
-            <h3 class="fw-bold text-uppercase">OUR VISION</h3>
-
+            <h3 className="fw-bold text-uppercase">{sections[0].title}</h3>
           </div>
           <div className="utf-card-content">
             {sections[0].content.map((text, index) => (
@@ -143,14 +113,14 @@ function About() {
         <div className="col-lg-6">
           <img
             src={sections[0].image}
-            className="img-fluid rounded-10"
+            className="img-fluid rounded-10 shadow"
             alt="Origin Story"
           />
         </div>
       </div>
 
-      {/* Second Row - Need for 24IN MAID SERVICE */}
-      <div className="row">
+      {/* Second Section */}
+      <div className="row" data-aos="fade-right">
         <div className="col-12 mb-4">
           <div className="utf-sidebar-widget-item card-shadow">
             <div className="utf-section-headline-item centered margin-top-0 margin-bottom-20">
@@ -165,18 +135,18 @@ function About() {
         </div>
       </div>
 
-      {/* Second Row - Three Cards (Job Seekers, Employers, Why 24IN MAID SERVICE) */}
+      {/* Remaining Sections */}
       <div className="row">
         {sections.slice(2).map((section, index) => (
-          <div className="col-md-4" key={index}>
-            <div className="utf-sidebar-widget-item card-shadow">
+          <div className="col-md-4 mb-4" key={index} data-aos="zoom-in">
+            <div className="utf-sidebar-widget-item card-shadow h-100">
               <div className="utf-section-headline-item centered margin-top-0 margin-bottom-20">
                 <h3>{section.title}</h3>
               </div>
               <div className="utf-card-content">
                 {Array.isArray(section.content) ? (
                   section.content.map((item, i) => (
-                    <ul key={i} className="list-2">
+                    <ul key={i} className="list-unstyled">
                       <li>
                         <strong>{item.title}:</strong> {item.detail}
                       </li>
