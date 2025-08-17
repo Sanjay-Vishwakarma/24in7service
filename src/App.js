@@ -17,11 +17,13 @@ import { ToastNotification } from "./utils/ToastNotification";
 import TermsAndCondition from "./pages/TermsAndCondition";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
 import ScrollToTop from "./components/ScrollToTop";
+import Login from "./dashboard/Login";
+import Dashboard from "./dashboard/Dashboard";
 
 function App() {
   const location = useLocation();
   const [showInquiryModal, setShowInquiryModal] = useState(false);
-
+  const isDashboardRoute = location.pathname.startsWith('/dashboard');
     const modalRoutes = ["/pricing", "home","process ", "/feedback"]; // <--- Add this line
 
 
@@ -51,7 +53,8 @@ function App() {
         <InquiryModal onClose={() => setShowInquiryModal(false)} />
       )}
 
-      <Header />
+      {!isDashboardRoute && <Header />}
+ 
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -66,8 +69,10 @@ function App() {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/privacy-policy" element={<PrivacyAndPolicy />} />
         <Route path="/terms-condition" element={<TermsAndCondition />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-      <Footer />
+      {!isDashboardRoute && <Footer />}
     </>
   );
 }
