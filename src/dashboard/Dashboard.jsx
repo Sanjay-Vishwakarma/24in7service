@@ -23,9 +23,13 @@ function Dashboard() {
     return (
         <Container fluid className="dashboard-main">
             {/* Header with Logout */}
-            <div className="dashboard-header d-flex justify-content-between align-items-center py-3 px-3">
-                <h4 className="mb-0">Admin Dashboard</h4>
-                <Button variant="outline-danger" className="logout-btn" onClick={handleLogout}>
+            <div className="dashboard-header d-flex flex-column flex-md-row justify-content-between align-items-center py-3 px-3">
+                <h4 className="mb-2 mb-md-0 text-center text-md-start">Admin Dashboard</h4>
+                <Button
+                    variant="outline-danger"
+                    className="logout-btn w-100 w-md-auto"
+                    onClick={handleLogout}
+                >
                     Logout
                 </Button>
             </div>
@@ -38,6 +42,8 @@ function Dashboard() {
                     textColor="primary"
                     indicatorColor="primary"
                     aria-label="dashboard tabs"
+                    variant="scrollable"
+                    scrollButtons="auto"
                 >
                     <Tab label="Contacts" />
                     <Tab label="Feedback" />
