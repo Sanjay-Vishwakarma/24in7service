@@ -5,8 +5,13 @@ import { showToast } from '../utils/ToastNotification';
 
 function PricingCard() {
   const [showModal, setShowModal] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
 
-  const openModal = () => setShowModal(true);
+  const openModal = (serviceName) => {
+    setSelectedService(serviceName);
+    setShowModal(true);
+  };
+
   const closeModal = () => setShowModal(false);
 
   const handleInquirySuccess = () => {
@@ -17,7 +22,13 @@ function PricingCard() {
   return (
     <div>
       <PricingList onGetStartedClick={openModal} />
-      {showModal && <InquiryModal onClose={closeModal} onSuccess={handleInquirySuccess} />}
+      {showModal && (
+        <InquiryModal
+          onClose={closeModal}
+          onSuccess={handleInquirySuccess}
+          defaultService={selectedService}
+        />
+      )}
     </div>
   );
 }
