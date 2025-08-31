@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Feedback.css';
 import axiosInstance from "./../config/axiosInstance";
 import { API_ENDPOINTS } from './../config/apiEndpoints';
-import { showToast } from './../utils/ToastNotification';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 function Feedback() {
     const [feedback, setFeedback] = useState({
@@ -15,6 +16,17 @@ function Feedback() {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [hoverRating, setHoverRating] = useState(0);
+
+    // Snackbar state
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: '',
+        severity: 'success'
+    });
+
+    const handleCloseSnackbar = () => {
+        setSnackbar(prev => ({ ...prev, open: false }));
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -66,7 +78,11 @@ function Feedback() {
             const response = await axiosInstance.post(API_ENDPOINTS.ADD_FEEDBACK, payload);
 
             if (response.data) {
-                showToast('Thank you for your feedback!', 'success');
+                setSnackbar({
+                    open: true,
+                    message: 'Thank you for your feedback!',
+                    severity: 'success'
+                });
                 setFeedback({
                     name: '',
                     email: '',
@@ -76,10 +92,11 @@ function Feedback() {
             }
         } catch (error) {
             console.error('Error submitting feedback:', error);
-            showToast(
-                error.response?.data?.message || 'Failed to submit feedback. Please try again.',
-                'error'
-            );
+            setSnackbar({
+                open: true,
+                message: error.response?.data?.message || 'Failed to submit feedback. Please try again.',
+                severity: 'error'
+            });
         } finally {
             setIsSubmitting(false);
         }
@@ -143,7 +160,7 @@ function Feedback() {
                                     disabled={isSubmitting}
                                 >
                                     <svg viewBox="0 0 24 24" width="28" height="28">
-                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                                     </svg>
                                 </button>
                             ))}
@@ -183,6 +200,22 @@ function Feedback() {
                     </button>
                 </form>
             </div>
+
+            {/* Snackbar notification */}
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={4000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={handleCloseSnackbar}
+                    severity={snackbar.severity}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }
