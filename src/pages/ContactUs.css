@@ -5,10 +5,11 @@
 .contact-container {
   max-width: 1100px;
   margin: 0 auto;
-  min-height: 100vh; /* Full screen height */
+  min-height: 100vh; /* Full screen height for desktop */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1rem;
 }
 
 .modal-close-btn {
@@ -40,12 +41,11 @@
 
 .contact-header h1 {
   font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
   background: linear-gradient(90deg, #6a0dad, #a4508b);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  margin-bottom: 0.5rem;
   display: inline-block;
 }
 
@@ -56,21 +56,20 @@
   margin: 0 auto;
 }
 
-/* Responsive layout */
+/* Default (mobile-first): stacked layout */
 .contact-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 2rem;
-  align-items: stretch; /* Make both equal height */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-
+/* Desktop layout (side-by-side) */
 @media (min-width: 992px) {
   .contact-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;  /* Equal columns */
+    grid-template-columns: 1fr 1fr; /* Equal columns */
     gap: 2rem;
-    align-items: stretch;           /* Both equal height */
+    align-items: stretch;
   }
 }
 
@@ -81,8 +80,8 @@
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   border: 1px solid rgba(0,0,0,0.05);
-  padding: 1.5rem; /* reduce padding */
-  height: 100%; /* same height */
+  padding: 1.5rem;
+  height: 100%;
 }
 
 /* Contact Info Section */
@@ -149,6 +148,7 @@
   word-break: break-all;
 }
 
+/* Office Address cards */
 .address-card {
   background: rgba(106, 13, 173, 0.03);
   border-radius: 12px;
@@ -322,9 +322,4 @@ textarea {
 
 .pulse-animation {
   animation: pulse 2s infinite;
-}
-
-.contact-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
 }

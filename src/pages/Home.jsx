@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import jobImg from "../assets/images/job.png";
-import mgHome from "../assets/images/background.jpg";
 import marketImg from "../assets/images/market.png";
-import ContactUs from "./ContactUs";
 import Job from "./Job";
 import "./Home.css";
 import { Helmet } from "react-helmet";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import ServiceCarousel from "./ServiceCarousel";
+import img1 from "../assets/images/1.jpeg";
+import img2 from "../assets/images/2.jpeg";
+import img3 from "../assets/images/3.jpeg";
+
 
 const cardData = [
   {
@@ -50,8 +52,21 @@ function Home() {
   const handleOpenJobModal = () => setOpenJobModal(true);
   const handleCloseJobModal = () => setOpenJobModal(false);
 
+  const bannerImages = [img1, img2, img3];
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % bannerImages.length);
+    }, 10000); // auto change every 5s
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <>
+       
+
       <Helmet>
         <title>
           24inMaidService - Find Jobs & Hire Domestic Helpers in Mumbai-PAN
@@ -91,37 +106,46 @@ function Home() {
         />
 
         {/* Hero Banner */}
-        <motion.div
-          className="banner-container"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src={mgHome}
-            alt="Hero"
-            className="banner-image img-fluid"
-            loading="eager"
-          />
+        <div className="banner-container">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={bannerImages[current]}
+              src={bannerImages[current]}
+              className="banner-image"
+              loading="eager"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            />
+          </AnimatePresence>
           <div className="banner-overlay">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="banner-title"
-            >
-              24IN MAID SERVICE
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="banner-subtitle"
-            >
-              Connecting Domestic Helpers with Opportunities
-            </motion.p>
+            <h1 className="banner-title">24IN MAID SERVICE</h1>
+            <p className="banner-subtitle">Connecting Domestic Helpers with Opportunities</p>
           </div>
-        </motion.div>
+
+          <div className="carousel-dots">
+            {bannerImages.map((_, idx) => (
+              <span
+                key={idx}
+                className={`dot ${idx === current ? "active" : ""}`}
+                onClick={() => setCurrent(idx)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation dots */}
+        <div className="carousel-dots">
+          {bannerImages.map((_, idx) => (
+            <span
+              key={idx}
+              className={`dot ${idx === current ? "active" : ""}`}
+              onClick={() => setCurrent(idx)}
+            />
+          ))}
+        </div>
+      
 
         {/* Main Section */}
         <div className="container main-content">
