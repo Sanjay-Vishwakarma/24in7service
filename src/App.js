@@ -24,7 +24,17 @@ function App() {
   const location = useLocation();
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const isDashboardRoute = location.pathname.startsWith('/dashboard');
-    const modalRoutes = ["/pricing", "home","process ", "/feedback"]; // <--- Add this line
+  const modalRoutes = ["/pricing", "home","process ", "/feedback"]; // <--- Add this line
+
+
+  // 🔹 Google Analytics route tracking
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag("config", "G-3QM8WWGMZ6", {
+        page_path: location.pathname,
+      });
+    }
+  }, [location]);
 
 
   useEffect(() => {
