@@ -11,6 +11,18 @@ import "@fontsource/inter/700.css";
 
 
 
+// ✅ Google Analytics Setup
+if (typeof window !== "undefined") {
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", "G-3QM8WWGMZ6");
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://www.googletagmanager.com/gtag/js?id=G-3QM8WWGMZ6";
+  document.head.appendChild(script);
+}
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
