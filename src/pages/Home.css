@@ -8,17 +8,23 @@
 .banner-container {
   width: 100%;
   height: 70vh;
-  min-height: 500px;
-  max-height: 800px;
+  min-height: 600px;
+  max-height: none;
   position: relative;
   overflow: hidden;
 }
 
 .banner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
-  object-position: center;
+  display: block;   /* removes inline spacing */
+  line-height: 0;   /* ensures no text baseline gap */
+  border: none;     /* avoids tiny border gap in some browsers */
+  
 }
 
 .banner-overlay {

@@ -264,7 +264,7 @@ function ContactUs({ onClose, isModal = false }) {
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
-                <p>9082295602, 9594013627</p>
+                <p>+91 9082295602, +91 9594013627</p>
               </div>
             </motion.div>
 
