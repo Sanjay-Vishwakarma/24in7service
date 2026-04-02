@@ -263,8 +263,8 @@ function ContactUs({ onClose, isModal = false }) {
             >
               <i className="fas fa-phone"></i>
               <div>
-                <h3>Phone</h3>
-                <p>+91 9082295602, +91 9594013627</p>
+                {/* <h3>Phone</h3>
+                <p>+91 9082295602, +91 9594013627</p> */}
               </div>
             </motion.div>
 
@@ -276,8 +276,8 @@ function ContactUs({ onClose, isModal = false }) {
             >
               <i className="fas fa-envelope"></i>
               <div>
-                <h3>Email</h3>
-                <p>24inmaidservice@gmail.com</p>
+                {/* <h3>Email</h3>
+                <p>24inmaidservice@gmail.com</p> */}
               </div>
             </motion.div>
 
